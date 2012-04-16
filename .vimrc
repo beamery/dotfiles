@@ -18,6 +18,7 @@ set shiftwidth=4
 set foldmethod=syntax
 set foldlevelstart=20
 set incsearch
+set autochdir
 
 " custom key mappings
 vmap <Tab> >gv
