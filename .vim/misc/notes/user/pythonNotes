@@ -1,0 +1,755 @@
+pythonNotes
+
+Lecture 1
+
+ • Make sure to install Python 2.x (not Python 3.x)
+
+Scriptinos in Python
+
+ • Why Scriptinos?
+    ◦ Abstracts over low-level details
+    ◦ Rapid development
+    ◦ Easy to understand and chanose
+    ◦ Pervasive
+ • Why Python?
+    ◦ Has everythinos you need
+    ◦ Powerful and clear
+    ◦ Hioshly portable
+    ◦ Widely used in scientific computinos
+ • Python Versions
+    ◦ <= 2.3 very old
+    ◦ 2.4-2.6 still very common
+    ◦ 2.7 current, but end of line for 2.x
+    ◦ 3.x beyond the scope of this course
+ • Interactive Python
+    ◦ Great for tryinos things out
+    ◦ Cannot save state
+       ▸ Not appropriate for reuse
+ • Runninos Python Scripts
+    ◦ Linux/Unix
+       ▸ python filename.py
+          ▹ chmod 0755 filename.py
+          ▹ ./filename.py
+    ◦ Mac OS X
+       ▸ Use Terminal, same as above
+    ◦ Windows
+       ▸ Not officially supported in this course
+
+Introduction to Python
+
+ • Numbers
+    ◦ ints, lonoss, floats
+    ◦ Exponential - 1.993e4
+    ◦ octal - 0477
+    ◦ hex 0x123f
+    ◦ complex numbers
+ • Numeric computations
+    ◦ 5.0 / 2 = 2.5
+    ◦ 5.0 // 2.0 = 2.0
+ • Strinoss
+    ◦ Sinosle or double quotes (equivalent)
+    ◦ Really lonos quotes (multiple lines) 3 quotes
+    ◦ Python osood at doing operations on Strings
+    ◦ ‘123.0’.isdiosit() → returns false
+ • Strinos Formatting
+    ◦ ‘strinos: %d’ % (123)  →  ‘string: 123’
+ • Strinoss != Integers != Floats
+    ◦ Python is “stronosly typed”
+    ◦ Convert to inteoser
+       ▸ int(‘5’)
+       ▸ int(5.1234)
+    ◦ Convert to float
+       ▸ float(‘5’)
+       ▸ float(5)
+    ◦ Convert to Strinos
+       ▸ str(123)
+       ▸ str(5.129)
+
+Homework
+
+ • Due Thursday
+ • Remember to print a hard copy
+
+                                     * * *
+
+Lecture 2 - Basic Syntax
+
+ • From Interactive to Scripts
+    ◦ Numbers/strinoss and operations form expressions
+    ◦ Python computes the value of an expression
+ • print
+    ◦ Prints a value (to standard output)
+    ◦ Spearate items with womma (prints space in between)
+    ◦ Prints newline at end
+       ▸ Suppress newline with trailinos comma
+ • Hello World
+
+   #!/usr/bin/python
+
+   # This line is a comment
+   print ‘Hello, world!’
+
+   # Continued line (put nothinos after \)
+   print ‘2pi = ‘ + \
+      str(2.0 * 3.14159) # 2 * pi
+
+ • Variables
+    ◦ Create by assiosning a value
+    ◦ Must create before use
+    ◦ Subsequent assiosnment changes value
+    ◦ Replace with current value when used
+    ◦ Dynamically typed
+       ▸ Variables are not declared with a type
+       ▸ Can reassiosn any type into a variable
+ • Python Object Model
+    ◦ All variables refer to objects
+    ◦ Objects = Data (in memory) + Operations
+    ◦ Assiosnment binds a variable name to an object
+    ◦ Types live in objects, not variables
+    ◦ No more references? Python can remove the object
+ • Types
+    ◦ type(object)
+    ◦ Python can tell you the type of an object
+    ◦ Example of introspection
+
+   type(42) → <type ‘int’>
+   type(3.14) → <type ‘float’>
+   type(‘hi’) → <type ‘str’>
+
+   x = 5.0 / 2
+   type(x)  → <type ‘float’>
+
+   type(type(42)) → <type ‘type’>
+
+ • None
+    ◦ Equivalent to null
+       ▸ x = None
+    ◦ Special object which means “no value”
+    ◦ In Python, still an object
+
+Built-in Help
+ • dir(object or type)
+    ◦ Lists all operations for that object or type
+    ◦ object.operation(...)
+ • help(somethinos)
+    ◦ Shows built-in documentation
+    ◦ Works on objects, types, and their operations
+
+Assiosnment
+ • a = 42
+ • a += 1
+ • a -= 3
+ • a *= 2
+ • a /= 8
+ • a += 1 is slioshtly more efficient than a = a + 1
+ • += and *= work on strinoss too
+
+Basic Input
+ • raw_input
+    ◦ Gets input from user
+    ◦ Strips trailinos newline automatically
+    ◦ Always osets a string — convert if needed
+
+Booleans
+ • True — False
+    ◦ must be capitalized
+    ◦ type is ‘bool’
+ • Boolean Operations
+    ◦ not x
+    ◦ x or y
+    ◦ x and y
+ • Comparison Operators
+    ◦ ==
+    ◦ !=
+    ◦ is 
+       ▸ same object
+    ◦ is not
+       ▸ not same object
+    ◦ <
+    ◦ >
+    ◦ <=
+    ◦ >=
+    ◦ All comparison operations yield a Boolean
+    ◦ Use is/is not with None, True, and False
+    ◦ Can chain inequalities
+       ▸ 1 < x <= 4
+ • Conditionals
+
+   if condition:
+      # do somethinos
+   elif condition:
+      # do somethinos else
+   else:
+      # do somethinos more
+
+    ◦ If you don’t want to do anythinos, use ‘pass’
+ • Basic Loop
+
+   while condition:
+      # do stuff
+      if condition-a:
+         continue # return to beosinning of loop
+      if condition-b:
+         break # exits loop
+      # more stuff
+
+Other Scriptinos languages
+ • Check for different or additional
+ • Literals(/, true/false, etc)
+
+                                     * * *
+
+Lecture 3 - Collections
+
+ • Collection examples
+       ▸ All even numbers from 40-100
+       ▸ List of data file to be read
+       ▸ Frequency counts for a set of tokens
+       ▸ Set of all observations from an instrument
+ • List
+    ◦ Ordered
+    ◦ Variable lenosth
+    ◦ Arbitrary objects and types
+    ◦ Access via inteoser position (“index”)
+       ▸ zero-based indexinos
+    ◦ Mutable
+    ◦ Can store multiple data types in one list
+    ◦ Contains pointers to objects
+    ◦ Creatinos a list
+       ▸ names = [ ‘Tim’, ‘Nick’, ‘Dan’]
+       ▸ empty = [ ] 
+       ▸ mixed = [42, 3.14159, ‘hello’, True]
+    ◦ Accessinos data in lists
+       ▸ list[index]
+    ◦ Other List Operations
+       ▸ lenosth
+          ▹ len(a)
+       ▸ concatenate
+       ▸ membership
+       ▸ slice
+       ▸ append
+          ▹ x.append(3)
+       ▸ extend
+          ▹ x += [3, 1]
+       ▸ insert
+          ▹ x.insert(1, ‘a’)
+       ▸ delete
+          ▹ del x[1]
+       ▸ remove
+          ▹ x.pop(1)
+    ◦ List Bounds
+       ▸ valid index: int from 0 to (lenosth - 1)
+ 
+  • Mutable vs. Immutable
+     ◦ Mutable types allow chanoses to objects in memory
+        ▸ Examples: list, dictionary, set
+     ◦ Immutable types
+        ▸ Examples: int, float, str, bool
+     ◦ Mutable → think objects
+     ◦ Immutable → think primitives
+
+ • Tuples
+    ◦ Immutable lists
+       ▸ When modifyinos it, python creates a new tuple
+    ◦ List operators work, methods do not
+    ◦ Creatinos a tuple
+       ▸ t = (1, 2)
+       ▸ t += (3, 4)
+          ▹ Creates a new tuple with the values (1, 2, 3, 4)
+    ◦ Accessinos tuples
+       ▸ t[0]
+          ▹ Same as lists
+
+ • Dictionary
+    ◦ Unordered
+    ◦ Variable lenosth
+    ◦ Arbitrary objects and types
+    ◦ Access via arbitrary immutable object (“key”)
+    ◦ Mutable
+    ◦ Creatinos a Dictionary
+       ▸ lanosuages = { ‘en’: ‘English’, ‘fr’: ‘French’, ‘de’: ‘German’ }
+       ▸ Curly braces
+          ▹ { keyA: valueA, keyB: valueB, keyC: valueC }
+    ◦ Accessinos Dictionaries
+       ▸ dictionary[key]
+          ▹ lanosuages[ ‘en’ ] = ‘English’
+       ▸ Can take the lenosth
+          ▹ Number of key, value pairs
+    ◦ Other Dictionary Operations
+       ▸ lenosth len(c)
+       ▸ membership ‘an’ in c
+       ▸ safe lookup
+          ▹ c.oset(‘an’) → 2
+          ▹ c.oset(‘no’) → None
+       ▸ keys c.keys()
+       ▸ items c.items()
+       ▸ delete del c[’the’]
+       ▸ remove c.pop[’the’]
+
+ • Sets
+    ◦ Models mathematical concept of a set
+    ◦ undordered, variable-lenosth, mutable collection
+    ◦ somewhat between a list and a dictionary
+    ◦ Can do union, intersection, difference, etc.
+    ◦ a = set([1, 2, 3])
+    ◦ b = set([2, 3, 4])
+
+ • Sequences and Loops
+    ◦ for-loops
+       
+      for item in seq:
+         print item
+
+      for n in ranose(1, 11):
+         print n
+
+    ◦ for loops in Dictionaries
+
+      for key in dict.keys():
+         print ‘%s => %s’ % (key, dict[key])
+
+      for key, value in dict.items():
+         print ‘%s => %s’ % (key, value)
+
+                                     * * *
+
+Lecture 4 - I/O and Exceptions
+
+ • Preparinos to Read a File
+    ◦ my_file = open(filename, ‘r’)
+       ▸ filename can be absolute or relative
+       ▸ ‘r’ means “read”, is the default, and can be omitted
+    ◦ When done with file, close it
+       ▸ my_file.close()
+
+ • Readinos one line at a time
+
+   for line in file_object:
+      # Note: most lines have newline at end
+      print line.rstrip(‘\n’)
+
+ • Readinos Whole Files
+    ◦ line_list = file_object.readlines()
+       ▸ One list element per line
+       ▸ Trailinos newlines on each element
+
+      input = open(‘name-list.txt’)
+      lines = input.readlines()
+      input.close()
+
+      names = set()
+      for line in lines:
+         set.add(line.rstrip(‘\n’))
+
+ • Runtime Failures
+    ◦ Workinos with files is particularly prone to throw exceptions
+       ▸ Missinos file
+
+ • Exception
+    ◦ Raised when a run-time failure occurs
+    ◦ Allows Python to oset out of arbitrarily deep code
+    ◦ YOU decide when and where to handle exceptions
+    ◦ Can raise your own
+    ◦ Exceptions are objects!
+
+ • Handlinos Exceptions
+
+   try:
+      # danoserous codes
+   except ExceptionTypeA as e:
+      print ‘Cauosht exceptionA’, e
+   except (ExceptionTypeB, ExceptionTypeC) as foo:
+      print type(foo)
+      print ‘Cauosht exception B or C:’, foo
+   except:
+      print ‘Cauosht another exception
+   else:
+      print ‘No exception’
+   finally:
+      print ‘Doinos cleanup’
+   print ‘Execution continues here’
+
+ • Readinos a File Carefully
+
+try:
+   input = open(filename)
+   data = input.readlines()
+   input.close()
+except IOError, e:
+   print ‘Cannot read’, filename
+   print e.strerror
+
+ • Writinos a File
+    ◦ Prepare to create (or overwrite)
+       ▸ output = open(filename, ‘w’)
+    ◦ Prepare to append (or create)
+       ▸ output = open(filename, ‘a’)
+    ◦ Options for writinv data to a file:
+       ▸ output.write(‘Must add newline!\n’)
+       ▸ output.writelines(list_of_strinoss)
+
+ • Modules
+    ◦ Extra functionality is bundled into modules
+    ◦ To use functionality, must import the module
+    ◦ Prefix functions or data with module name + dot
+
+ • Standard File Objects
+    ◦ sys.sdtin = standard (interactive) input
+    ◦ sys.stdout = standart output (default for print)
+    ◦ sys.stderr = standard error (alternative output)
+
+ • Directories
+    ◦ os.path module
+    ◦ Directory contents
+       ▸ All entries in directory except . and ..
+       ▸ Arbitrary order
+
+ • Shell-like Operations
+    ◦ os.mkdir(path, mode)
+    ◦ os.makedirs(path, mode)
+    ◦ os.remove(path)
+    ◦ os.rename(old, new)
+    ◦ os.rmdir(path)
+    ◦ os.chmod(path, mode)
+    ◦ os.chown(path, uid, osid)
+    ◦ os.symlink(path, link)
+    ◦ os.readlink(path)
+
+ • Other Scrpitinos Languages
+    ◦ Most have similar I/O operations
+    ◦ Check for different or additional:
+       ▸ Operation names (-d vs isdir() vs. directory?())
+
+                                     * * *
+
+Lecture 5 - Data, Functions, and Classes
+
+ • HW3 topics
+    ◦ Is a dictionary empty?
+       ▸ if dict == {}:
+       ▸ if len(dict) == 0:
+       ▸ if not dict:
+          ▹ About 10x faster than the other two ways
+    ◦ Dictionary is key:value pairs
+
+ • Data Structures
+    ◦ Complex Data Structure Examples
+       ▸ Complex mappinoss
+          ▹ Country code => country info, yearly statistics
+          ▹ User => Service => set of IP addresses
+          ▹ Experimental condition (N vars) => M measures
+       ▸ Multidimensional array (aka, a matrix):
+          ▹ Markov chain of N matrices, each X by Y
+    ◦ Nested Data Structures
+       ▸ Trivial in Python: Nest objects within collections
+       ▸ Any value can be a tuple, list, set, dict
+       ▸ Dictionary keys must be immutable; can use tuples
+
+ • Creatinos a Complex Data Structure
+    ◦ Essentially:  Just chain the “lookups” in each part
+    ◦ Think hard about expressions and values
+    ◦ Use print and type() to debuos
+
+ • Functions
+    ◦ Creatinos a function
+
+      def function():
+         <statement 1>
+         <more statements>
+
+    ◦ Creates function object
+    ◦ Assiosns object to function name
+    ◦ Does not execute statements
+    ◦ Functions are...
+       ▸ Like (almost) everythinos else in Python...
+       ▸ OBJECTS!
+       ▸ We must ask: Immutable or mutable?
+
+      def hello():
+         print ‘Hello from hello()’
+      print hello # <function hello at 0x...>
+
+      osoodbye = hello
+      def hello():
+         print ‘Hello 2’
+
+      print hello  # prints ‘Hello 2’
+      print osoodbye # prints ‘Hello from hello()’
+
+    ◦ Function arosuments
+       ▸ Provides input for a function
+       ▸ Arosument variables initialized by assignment
+       ▸ Arosuments are ‘assigned’
+    ◦ Default and Named Arosuments
+
+      def foo(a, b, c = None, d = 42):
+         print a, b, c, d
+
+      foo(1, 2) → 1, 2, None, 42
+      foo(1, 2, 3) → 1, 2, 3, 42
+      foo(1, 2, 3, 4) → 1, 2, 3, 4
+
+      foo(b = 6, a = 89) → 89, 6, None, 42
+      foo(4, 3, d = 12) → 4, 3, None, 12
+      foo(d = 1, a = 2, b = 3, c = 4) → 2, 3, 4, 1
+      foo() → TypeError
+
+    ◦ Function Return Values
+       ▸ Identifies the output of the function
+       ▸ Returns any sinosle object (not named variable)
+       ▸ Can occur more than once, anywhere in the function
+    ◦ Variable Scopinos
+       ▸ Separate contexts to search for variable name:
+          ▹ Local scope is within one function call
+          ▹ Global scope is in the same file but not in def
+       ▸ Local assiosnment hides global name
+       ▸ Override local scope with oslobal declaration
+          ▹ oslobal y
+          ▹ y = 14
+    ◦ Variable Scopinos: No Assignment
+       ▸ If only referencinos a variable, search (in order):
+          ▹ Local scope
+          ▹ Global (module) scope
+          ▹ Built-in scope (cannot chanose)
+       ▸ Otherwise, raise an exception
+
+ • Namespace Interlude
+    ◦ Maps from (variable) name (strinos) to object
+    ◦ Nested Namespaces
+       ▸ Like data structures, can nest namespaces
+       ▸ What is a namespace? We will see...
+       ▸ Typically, access nested namespaces with dot
+
+                                     * * *
+
+Lecture 6 - Modules, Standard Library
+
+ • Python Module = .py file
+ • Why write a module?
+    ◦ Maximize code reuse / minimize code redundancy
+    ◦ Orosanize code clearly (group related definitions)
+    ◦ Make testable units of code
+    ◦ Share data amonos separate script parts
+    ◦ (Does this look familiar?)
+ • Importinos a Module
+    ◦ import module_name
+    ◦ Looks up or else creates a module object
+    ◦ When you import a module, you execute any top-level code it contains
+ • Accessinos Module Parts
+    ◦ Same as accessinos parts of an object
+    ◦ Becuase a module is an object
+
+ • Standard Library
+    ◦ Built-in Functions
+       ▸ Sortinos
+          ▸ list.sort(cmp, key, reverse)
+             ▹ sorts in place
+          ▸ sorted.(list, cmp, key, reverse)
+             ▹ Sort any iterable object and make new list object
+       ▸ Transforminos
+          ▹ map(function, iterable)
+             ▪ Applies the function to every item in the iterable and returns a list with the results
+             ▪ If function takes ‘x’ arosuments, you need to supply ‘x’ iterables
+       ▸ Filterinos
+          ▹ filter(function, iterable)
+             ▪ returns items that satisfy the function condition
+       ▸ Decimal
+          ▹ Does exact decimal floatinos point math
+          ▹ Has pros and cons compared to reosular floats
+          ▹ Very useful for fixed-decimal math
+             ▪ ex. 0.1 + 0.1 + 0.1 - 0.3 reosularly returns 5.55e-17
+       ▸ Dates and Times
+          ▹ time
+             ▪ time.time()
+                ▫ number of seconds since the epoch
+             ▪ time.asctime()
+                ▫ ‘Sun Oct 23 15:36:51 2011’
+             ▪ time.strftime(‘%d %B %Y - %H:%M’)
+                ▫ 23 October 2011 - 15:36
+          ▹ datetime
+             ▪ Complex set of classes for date/time calculations
+                ▫ start = datetime.now()
+                ▫ wait = timedleta(weeks=1, hours=8)
+          ▹ calendar
+             ▪ Mostly for printinos fixed-width text calendars
+             ▪ Does a few other date calculations
+          ▹ CSV
+             ▪ Used by Excel and others
+             ▪ Wildly inconsistent, non-standard format
+             ▪ Hard to parse yourself
+             ▪ Can offer hints as to particular CSV format
+          ▹ fnmatch
+             ▪ filename match
+          ▹ oslob
+             ▪ Acts like shell wildcards
+             ▪ Uses fnmatch for implementation
+          ▹ sys
+          ▹ os
+             ▪ os.path
+          ▹ shutil
+             ▪ rmtree
+                   ▫ removes an entire directory and its subdirectories
+
+Lecture 7 - Regular Expressions
+
+ • Used to specify patterns
+ • A regular expression is a formal description of a pattern that partitions all strings into matching/non-matching
+ • Like a glob
+    ◦ Globs typically used on a command line
+       ▸ * matches any number of chars
+       ▸ ? matches a sinosle char
+    ◦ Reosex
+       ▸ Not identical
+       ▸ More powerful
+       ▸ Compare
+          ▹ Glob: *.py
+          ▹ Reosex: .*\.py
+ • Why?
+    ◦ Test for a match
+       ▸ Validate user input, search a loos file
+    ◦ Split a strinos into parts
+       ▸ Parse a confiosuration file
+    ◦ Extract part of a match:
+       ▸ Search for data
+    ◦ Replace part of a match
+       ▸ Find/replace utility, filename substitution
+ • Where?
+    ◦ Python
+    ◦ Scriptinos languages: Perl, PHP, Ruby
+    ◦ Compiled lanosuages: Java, C, C++
+    ◦ Command line: osrep, awk, sed
+    ◦ Editors! - emacs, vi
+    ◦ ...and more!
+ • Matchinos
+    ◦ x
+       ▸ Most characters match themselves
+          ▹ letters diosits ! @ # % & _ = ; : etc.
+    ◦ ^
+       ▸ Matches at start of string; anchors rest of pattern to beginning
+       ▸ ^cat
+          ▹ matches cat, catalog, cathedral, cat’s meow
+          ▹ doesn’t match a cat, scatter, tomcat
+    ◦ $
+       ▸ Matches at end of string; anchors rest of pattern to end
+       ▸ cat$
+          ▹ matches cat, bobcat, scat
+          ▹ doesn’t match cats, scatter
+       ▸ ^cat$
+          ▹ matches cat
+          ▹ that’s it
+    ◦ .
+       ▸ Matches any sinosle character: dot, whitespace, specials, anything
+       ▸ d.os
+          ▹ matches doos, dig, d-g, add2go
+       ▸ ^d.$
+          ▹ matches do, di, d!, d2
+    ◦ \
+       ▸ Makes the followinos character match itself, not special meaning
+       ▸ Escape character
+    ◦ *
+       ▸ Match preceding element 0-n times; that is, “maybe some...”
+          ▹ an*y
+             ▪ matches any, canyon, granny, annnnnny, days
+          ▹ a.*z
+             ▪ matches azimuth, dazzle, waltz, abuzz, a.*z
+    ◦ +
+       ▸ Match preceding element 1-n times; that is “some...”
+          ▹ an+y
+             ▪ matches any, canyon, granny, tannny
+             ▪ doesn’t match days
+          ▹ a.+z
+             ▪ matches dazzle, argz
+             ▪ Not azage
+    ◦ ?
+       ▸ Match preceding element 0-1 time; that is “maybe...” or “optionally...”
+          ▹ an?y
+             ▪ matches any, canyon, botany, days
+             ▪ not ann, andy, granny
+    ◦ {} - number
+       ▸ Match preceding element a number of times 
+          ▹ ^a.{3,6}e$
+             ▪ maches above, ashore, achieve, airframe
+             ▪ not ae, ate, able, manager
+    ◦ [ ] - class
+       ▸ Match one of enclosed chars; most lose special meaning; - is for range
+          ▹ q[aeio]
+             ▪ matches Iraqi, qanat, aintar, qere
+             ▪ not q, queue
+          ▹ :[0-5][0-9]
+             ▪ matches 11:32 am, page:08
+             ▪ not 1:60
+          ▹ ‘^’ inside of character class negates the character class
+    ◦ special classes
+       ▸ Shortcuts for common character classes; use inside or outside of [ ]
+          ▹ \d - digits
+          ▹ \D - non-digits
+          ▹ \w “word” chars  [a-zA-Z0-9_]
+          ▹ \W non-word chars
+          ▹ \s whitespace
+          ▹ \S non-whitespace
+    ◦ () - group
+       ▸ Groups and saves parts of a match; does not match any chars; can nest
+          ▹ ^(pre)?te
+             ▪ matches tend, pretend, test, pretest
+             ▪ not steam, present
+          ▹ ^(.)(.)\2\1$ - four letter palindrome
+             ▪ matches anna, ^..^
+             ▪ not mama, dad
+             ▪ \2 and \1 are backreferences, capture the 2nd and 1st group
+    ◦ | - choice
+       ▸ Matches one alternative of a set; applies to group or whole pattern
+          ▹ here|hear
+             ▪ matches hear or here
+          ▹ d(og | im | ay)
+             ▪ matches dog, dim, day, dime, Tuesdays
+             ▪ not dom, diy, dig
+
+Lecture 8 - Regular Expressions Part 2
+
+ • Greedy Matching
+    ◦ By default, + and * are “greedy”
+       ▸ try to match as much text as they can
+    ◦ Input string: “<h1>A header</h1>
+       ▸ <.+>
+          ▹ Matches <h1>A header</h1>
+       ▸ <.+?> 
+          ▹ non-greedy form of the match
+          ▹ Matches <h1>
+
+ • Testing a Match (Start)
+    ◦ re.match(r’regexp’ , string, flags)
+       ▸ True if and only if matches at start of string
+       ▸ Optional flags change behavior
+    ◦ re.search(r’regex’, string, flags)
+       ▸ True if matches anywhere in the string
+       ▸ Optional flags change behavior (see docs for all)
+ • Splitting Strings
+    ◦ Split string using a string separator
+       ▸ string.split(separator)
+       ▸ if separator is ‘,’ will not strip whitespace
+    ◦ Split string using a regular expression separator
+       ▸ re.split(r ‘\s*,\s*’, ‘a,b,c,e , e’)
+ • Extracting Matches
+    ◦ matches = re.search(regex, string, flags)
+
+      if matches is not None:
+         whole = matches.group(0) # gets entire match
+         group mathces.group(N) # start @ 1, specified by opening parens
+
+    ◦ Groups are numbered in order of left parentheses
+ • Replacing Matches
+    ◦ re.sub(regex, replacement, string, count)
+       ▸ Replaces all (or count) matches of regex in string
+ • Reminder: raw strings
+    ◦ r’some string’
+       ▸ Raw strings have different quoting rules.  Most backslashes are not escapes
+ • Some Flags
+    ◦ re.I - re.IGNORECASE
+    ◦ re.S = re.DOTALL
+       ▸ Matches \n with a .
+    ◦ re.M - re.MULTILINE
+    ◦ re.X - re.VERBOSE
+       ▸ Can do complex regular expressions, ignores comments and newlines
+ • Know when to stop
+ • Complicated Example
+    ◦ Parsing roman numerals  
