@@ -12,13 +12,23 @@ filetype plugin indent on
 let g:SuperTabDefaultCompletionType = "context"
 let mapleader=","
 
-set number
+" set vim options
 set tabstop=4
 set shiftwidth=4
 set foldmethod=syntax
-set foldlevelstart=20
-set incsearch
-set autochdir
+set foldlevelstart=20 " start folds unfolded
+
+set number " line numbers
+set ruler " ruler in bottom right (row, col, percentage)
+set nocompatible " don't want vi compatibility mode
+set showcmd " show commands in the bottom line
+set visualbell " turn off audible bell
+set wildmenu " vim command completions show up in the status line
+set incsearch " incremental search
+set autochdir " sync current dir with current file
+
+" setup viminfo for saving sessions
+set viminfo=%,'50,\"100,:100,n~/.viminfo
 
 " custom key mappings
 vmap <Tab> >gv
