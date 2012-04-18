@@ -8,7 +8,7 @@ set guioptions-=R
 let os = substitute(system('uname'), "\n", "", "")
 " domain specific stuff
 if os == "Linux"
-	set gfn=Droid\ Sans\ Mono\ 10
+	set gfn=Liberation\ Mono\ 10
 
 elseif os == "Darwin"
 
