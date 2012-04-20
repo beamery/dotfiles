@@ -44,17 +44,21 @@ set viminfo=%,'50,\"100,:100,n~/.viminfo
 " custom key mappings
 vmap <Tab> >gv
 vmap <S-Tab> <gv
-nmap <Leader>w <C-w>
-nmap <Leader>t :NERDTreeToggle<Enter>
-nmap <Leader>f :FufFile<Enter>
-nmap <Leader>b :FufBuffer<Enter>
-nmap <Leader>n :noh<Enter>
+nmap <Leader>t :NERDTreeToggle<CR>
+nmap <Leader>l :TlistToggle<CR>
+nmap <Leader>f :FufFile<CR>
+nmap <Leader>b :FufBuffer<CR>
+nmap <Leader>n :noh<CR>
 nmap <Tab> >>
 nmap <S-Tab> <<
 nmap ' `
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
 
 " build tags of your own project with Ctrl-F12
-map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <C-F12> :!ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 
 if has('gui_running')
 	colorscheme wombat
@@ -72,7 +76,6 @@ au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 
 set tags+=~/.vim/tags/cpp
 
-
 " OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
@@ -87,3 +90,6 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
+" Conque Shell custom settings
+let g:ConqueTerm_InsertOnEnter = 1
+let g:ConqueTerm_CWInsert = 1
