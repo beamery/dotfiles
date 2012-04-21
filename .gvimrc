@@ -8,7 +8,7 @@ set guioptions-=R
 let os = substitute(system('uname'), "\n", "", "")
 " domain specific stuff
 if os == "Linux"
-  if $HOSTNAME = "brian-linux"
+  if $HOSTNAME == "brian-linux"
 	set gfn=Liberation\ Mono\ 10
   else
 	set gfn=Liberation\ Mono\ 9  
