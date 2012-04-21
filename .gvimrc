@@ -11,7 +11,7 @@ if os == "Linux"
   if $HOSTNAME == "brian-linux"
 	set gfn=Liberation\ Mono\ 10
   else
-	set gfn=Liberation\ Mono\ 9  
+	set gfn=Liberation\ Mono\ 8  
   endif
 
 elseif os == "Darwin"
