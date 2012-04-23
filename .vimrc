@@ -13,7 +13,7 @@ let g:SuperTabDefaultCompletionType = "context"
 let mapleader=","
 
 " set vim options
-set softtabstop=4
+set softtabstop=2
 set shiftwidth=2
 set foldmethod=syntax
 set foldlevelstart=20 " start folds unfolded
@@ -34,7 +34,6 @@ set incsearch " incremental search
 set autochdir " sync current dir with current file
 set hl=l:Visual " use Visual Mode's highlighting for ease of reading
 set hidden " allow switching between buffers without saving
-set cursorline " highlights the current cursor line
 set ignorecase " ignores case for search and replace
 set smartcase " if capital letters in search, turn off ignore case
 
@@ -62,6 +61,7 @@ map <C-F12> :!ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 
 if has('gui_running')
 	colorscheme wombat
+	set cursorline " show line of cursor only in gvim
 endif
 
 " setup omnicomplete
@@ -86,6 +86,7 @@ let OmniCpp_MayCompleteDot = 1 " autocomplete after .
 let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
 let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+let OmniCpp_SelectFirstItem = 2
 
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
