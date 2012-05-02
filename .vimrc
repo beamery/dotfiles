@@ -16,6 +16,7 @@ let mapleader=","
 set softtabstop=2
 set shiftwidth=2
 set foldmethod=syntax
+" set textwidth=80
 set foldlevelstart=20 " start folds unfolded
 set scrolloff=5 " keep at least 5 lines around the cursor
 
@@ -55,9 +56,13 @@ nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
+autocmd FileType python imap . .<Tab>
 
 " build tags of your own project with Ctrl-F12
 map <C-F12> :!ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
+
+" autobuild tags on writing .c, .h, .cpp
+au BufWrite *.c,*.cpp,*.h silent! !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 
 if has('gui_running')
 	colorscheme wombat
@@ -86,7 +91,7 @@ let OmniCpp_MayCompleteDot = 1 " autocomplete after .
 let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
 let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-let OmniCpp_SelectFirstItem = 2
+" let OmniCpp_SelectFirstItem = 2
 
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif

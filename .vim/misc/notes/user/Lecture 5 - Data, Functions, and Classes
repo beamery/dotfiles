@@ -1,0 +1,98 @@
+Lecture 5 - Data, Functions, and Classes
+
+ • HW3 topics
+    ◦ Is a dictionary empty?
+       ▸ if dict == {}:
+       ▸ if len(dict) == 0:
+       ▸ if not dict:
+          ▹ About 10x faster than the other two ways
+    ◦ Dictionary is key:value pairs
+
+ • Data Structures
+    ◦ Complex Data Structure Examples
+       ▸ Complex mappings
+          ▹ Country code => country info, yearly statistics
+          ▹ User => Service => set of IP addresses
+          ▹ Experimental condition (N vars) => M measures
+       ▸ Multidimensional array (aka, a matrix):
+          ▹ Markov chain of N matrices, each X by Y
+    ◦ Nested Data Structures
+       ▸ Trivial in Python: Nest objects within collections
+       ▸ Any value can be a tuple, list, set, dict
+       ▸ Dictionary keys must be immutable; can use tuples
+
+ • Creating a Complex Data Structure
+    ◦ Essentially:  Just chain the “lookups” in each part
+    ◦ Think hard about expressions and values
+    ◦ Use print and type() to debug
+
+ • Functions
+    ◦ Creating a function
+
+      def function():
+         <statement 1>
+         <more statements>
+
+    ◦ Creates function object
+    ◦ Assigns object to function name
+    ◦ Does not execute statements
+    ◦ Functions are...
+       ▸ Like (almost) everything else in Python...
+       ▸ OBJECTS!
+       ▸ We must ask: Immutable or mutable?
+
+      def hello():
+         print ‘Hello from hello()’
+      print hello # <function hello at 0x...>
+
+      goodbye = hello
+      def hello():
+         print ‘Hello 2’
+
+      print hello  # prints ‘Hello 2’
+      print goodbye # prints ‘Hello from hello()’
+
+    ◦ Function arguments
+       ▸ Provides input for a function
+       ▸ Argument variables initialized by assignment
+       ▸ Arguments are ‘assigned’
+    ◦ Default and Named Arguments
+
+      def foo(a, b, c = None, d = 42):
+         print a, b, c, d
+
+      foo(1, 2) → 1, 2, None, 42
+      foo(1, 2, 3) → 1, 2, 3, 42
+      foo(1, 2, 3, 4) → 1, 2, 3, 4
+
+      foo(b = 6, a = 89) → 89, 6, None, 42
+      foo(4, 3, d = 12) → 4, 3, None, 12
+      foo(d = 1, a = 2, b = 3, c = 4) → 2, 3, 4, 1
+      foo() → TypeError
+
+    ◦ Function Return Values
+       ▸ Identifies the output of the function
+       ▸ Returns any single object (not named variable)
+       ▸ Can occur more than once, anywhere in the function
+    ◦ Variable Scoping
+       ▸ Separate contexts to search for variable name:
+          ▹ Local scope is within one function call
+          ▹ Global scope is in the same file but not in def
+       ▸ Local assignment hides global name
+       ▸ Override local scope with global declaration
+          ▹ global y
+          ▹ y = 14
+    ◦ Variable Scoping: No Assignment
+       ▸ If only referencing a variable, search (in order):
+          ▹ Local scope
+          ▹ Global (module) scope
+          ▹ Built-in scope (cannot change)
+       ▸ Otherwise, raise an exception
+
+ • Namespace Interlude
+    ◦ Maps from (variable) name (string) to object
+    ◦ Nested Namespaces
+       ▸ Like data structures, can nest namespaces
+       ▸ What is a namespace? We will see...
+       ▸ Typically, access nested namespaces with dot
+
