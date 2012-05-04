@@ -1,0 +1,96 @@
+Lecture 10 - Correctness
+
+ • Regex tips
+    ◦ Don’t overuse .*
+    ◦ Don’t use {1}
+    ◦ Remember character classes
+    ◦ Save your matches!
+ • Is it right?
+    ◦ Functionality - “Does it do the correct thing?”
+    ◦ Reliability - “Does it work every time?”
+    ◦ Usability - “Is it easy and effective to use?”
+    ◦ Efficiency - “Is it fast? Low memory, disk, I/O?”
+    ◦ Maintainability - “Is it easy to change?”
+    ◦ Portability - “Does it work well everywhere?”
+ • Debugging with print statements
+
+   DEBUG = True
+
+   def debug(msg):
+      if DEBUG:
+         print “%s: %s” % (timestamp, msg)
+
+ • Debugger features
+    ◦ View code
+    ◦ Run live code, line-by-line
+    ◦ Examine variables
+    ◦ Run and stop at breakpoints
+    ◦ Stack traces
+    ◦ Watch points
+ • pdb - From the beginning
+    ◦ python -m pdb 09-homework.py
+    ◦ Don’t have to modify your script
+    ◦ Starts at the beginning
+    ◦ Can use breakpoints
+    ◦ In your code
+
+      import pdb
+      pdb.set_trace()
+
+      def ping_test(host):
+         if host.find(“:”) > 0:
+         host = re.sub(...)
+         
+         debug(“Pinging host” ...)
+         pdb.set_trace()
+         my_system([”ping”, host])
+
+ • Automated testing
+    ◦ Write software to test (other) software
+    ◦ Types of automated tests
+       ▸ Unit tests - parts of one script
+       ▸ Functional tests - Whole script (from outside)
+       ▸ Performance tests - (might cover later)
+    ◦ unittest
+       ▸ Based on JUnit
+       ▸ Supports automation, discovery, setup, teardown
+       ▸ Make a series of assertions
+          ▹ assertEqual(...)
+          ▹ assertNotEqual(...)
+          ▹ assertTrue(...)
+          ▹ assertRaises(...)
+          ▹ assert_(...)
+       ▸ Test Functions
+          ▹ Must start with ‘test’
+          ▹ Successful if no exception
+          ▹ Fail if an exception occurs
+       ▸ Creating Tests
+          ▹ Normal cases
+             ▪ math.sqrt(16) == 4.0
+             ▪ type(math.sqrt(4)) == type(1.0)
+          ▹ Error cases
+             ▪ math.sqrt(‘a’) raises TypeError
+          ▹ Boundary cases
+             ▪ empty input, non-existent files
+          ▹ Tricky cases
+             ▪ complicated input / functions
+       ▸ setUp / tearDown
+          ▹ Does setup / teardown for test cases
+          ▹ setUp
+             ▪ start_service()
+             ▪ connect_to_db()
+             ▪ initialize_data_structures()
+          ▹ tearDown
+             ▪ close_open_files()
+             ▪ cleanup_filesystem()
+             ▪ stop_service()
+    ◦ Unit Testing Tips
+       ▸ Test logical chunks of code — usually functions
+       ▸ Aim for reasonable code coverage
+       ▸ Run often!
+          ▹ After every (significant) change
+          ▹ Before you use, hand in, commit, etc.
+       ▸ Capture failures (i.e. bugs) in tests before fixing
+    ◦ Test-First Development
+       ▸ Radical idea: write tests *FIRST*
+

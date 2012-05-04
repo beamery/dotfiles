@@ -1,0 +1,114 @@
+Lecture 7 - Regular Expressions
+
+ • Used to specify patterns
+ • A regular expression is a formal description of a pattern that partitions all strings into matching/non-matching
+ • Like a glob
+    ◦ Globs typically used on a command line
+       ▸ * matches any number of chars
+       ▸ ? matches a single char
+    ◦ Regex
+       ▸ Not identical
+       ▸ More powerful
+       ▸ Compare
+          ▹ Glob: *.py
+          ▹ Regex: .*\.py
+ • Why?
+    ◦ Test for a match
+       ▸ Validate user input, search a log file
+    ◦ Split a string into parts
+       ▸ Parse a configuration file
+    ◦ Extract part of a match:
+       ▸ Search for data
+    ◦ Replace part of a match
+       ▸ Find/replace utility, filename substitution
+ • Where?
+    ◦ Python
+    ◦ Scripting languages: Perl, PHP, Ruby
+    ◦ Compiled languages: Java, C, C++
+    ◦ Command line: grep, awk, sed
+    ◦ Editors! - emacs, vi
+    ◦ ...and more!
+ • Matching
+    ◦ x
+       ▸ Most characters match themselves
+          ▹ letters digits ! @ # % & _ = ; : etc.
+    ◦ ^
+       ▸ Matches at start of string; anchors rest of pattern to beginning
+       ▸ ^cat
+          ▹ matches cat, catalog, cathedral, cat’s meow
+          ▹ doesn’t match a cat, scatter, tomcat
+    ◦ $
+       ▸ Matches at end of string; anchors rest of pattern to end
+       ▸ cat$
+          ▹ matches cat, bobcat, scat
+          ▹ doesn’t match cats, scatter
+       ▸ ^cat$
+          ▹ matches cat
+          ▹ that’s it
+    ◦ .
+       ▸ Matches any single character: dot, whitespace, specials, anything
+       ▸ d.g
+          ▹ matches dog, dig, d-g, add2go
+       ▸ ^d.$
+          ▹ matches do, di, d!, d2
+    ◦ \
+       ▸ Makes the following character match itself, not special meaning
+       ▸ Escape character
+    ◦ *
+       ▸ Match preceding element 0-n times; that is, “maybe some...”
+          ▹ an*y
+             ▪ matches any, canyon, granny, annnnnny, days
+          ▹ a.*z
+             ▪ matches azimuth, dazzle, waltz, abuzz, a.*z
+    ◦ +
+       ▸ Match preceding element 1-n times; that is “some...”
+          ▹ an+y
+             ▪ matches any, canyon, granny, tannny
+             ▪ doesn’t match days
+          ▹ a.+z
+             ▪ matches dazzle, argz
+             ▪ Not azage
+    ◦ ?
+       ▸ Match preceding element 0-1 time; that is “maybe...” or “optionally...”
+          ▹ an?y
+             ▪ matches any, canyon, botany, days
+             ▪ not ann, andy, granny
+    ◦ {} - number
+       ▸ Match preceding element a number of times 
+          ▹ ^a.{3,6}e$
+             ▪ maches above, ashore, achieve, airframe
+             ▪ not ae, ate, able, manager
+    ◦ [ ] - class
+       ▸ Match one of enclosed chars; most lose special meaning; - is for range
+          ▹ q[aeio]
+             ▪ matches Iraqi, qanat, aintar, qere
+             ▪ not q, queue
+          ▹ :[0-5][0-9]
+             ▪ matches 11:32 am, page:08
+             ▪ not 1:60
+          ▹ ‘^’ inside of character class negates the character class
+    ◦ special classes
+       ▸ Shortcuts for common character classes; use inside or outside of [ ]
+          ▹ \d - digits
+          ▹ \D - non-digits
+          ▹ \w “word” chars  [a-zA-Z0-9_]
+          ▹ \W non-word chars
+          ▹ \s whitespace
+          ▹ \S non-whitespace
+    ◦ () - group
+       ▸ Groups and saves parts of a match; does not match any chars; can nest
+          ▹ ^(pre)?te
+             ▪ matches tend, pretend, test, pretest
+             ▪ not steam, present
+          ▹ ^(.)(.)\2\1$ - four letter palindrome
+             ▪ matches anna, ^..^
+             ▪ not mama, dad
+             ▪ \2 and \1 are backreferences, capture the 2nd and 1st group
+    ◦ | - choice
+       ▸ Matches one alternative of a set; applies to group or whole pattern
+          ▹ here|hear
+             ▪ matches hear or here
+          ▹ d(og | im | ay)
+             ▪ matches dog, dim, day, dime, Tuesdays
+             ▪ not dom, diy, dig
+

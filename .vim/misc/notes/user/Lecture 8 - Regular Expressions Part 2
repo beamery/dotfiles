@@ -1,0 +1,51 @@
+Lecture 8 - Regular Expressions Part 2
+
+ • Greedy Matching
+    ◦ By default, + and * are “greedy”
+       ▸ try to match as much text as they can
+    ◦ Input string: “<h1>A header</h1>
+       ▸ <.+>
+          ▹ Matches <h1>A header</h1>
+       ▸ <.+?> 
+          ▹ non-greedy form of the match
+          ▹ Matches <h1>
+
+ • Testing a Match (Start)
+    ◦ re.match(r’regexp’ , string, flags)
+       ▸ True if and only if matches at start of string
+       ▸ Optional flags change behavior
+    ◦ re.search(r’regex’, string, flags)
+       ▸ True if matches anywhere in the string
+       ▸ Optional flags change behavior (see docs for all)
+ • Splitting Strings
+    ◦ Split string using a string separator
+       ▸ string.split(separator)
+       ▸ if separator is ‘,’ will not strip whitespace
+    ◦ Split string using a regular expression separator
+       ▸ re.split(r ‘\s*,\s*’, ‘a,b,c,e , e’)
+ • Extracting Matches
+    ◦ matches = re.search(regex, string, flags)
+
+      if matches is not None:
+         whole = matches.group(0) # gets entire match
+         group matches.group(N) # start @ 1, specified by opening parens
+
+    ◦ Groups are numbered in order of left parentheses
+ • Replacing Matches
+    ◦ re.sub(regex, replacement, string, count)
+       ▸ Replaces all (or count) matches of regex in string
+ • Reminder: raw strings
+    ◦ r’some string’
+       ▸ Raw strings have different quoting rules.  Most backslashes are not escapes
+ • Some Flags
+    ◦ re.I - re.IGNORECASE
+    ◦ re.S = re.DOTALL
+       ▸ Matches \n with a .
+    ◦ re.M - re.MULTILINE
+    ◦ re.X - re.VERBOSE
+       ▸ Can do complex regular expressions, ignores comments and newlines
+ • Know when to stop
+ • Complicated Example
+    ◦ Parsing roman numerals  
+
+
