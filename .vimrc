@@ -13,8 +13,8 @@ let g:SuperTabDefaultCompletionType = "context"
 let mapleader=","
 
 " set vim options
-set softtabstop=2
-set shiftwidth=2
+set softtabstop=4
+set shiftwidth=4
 set foldmethod=syntax
 set foldlevelstart=20 " start folds unfolded
 set scrolloff=5 " keep at least 5 lines around the cursor
@@ -27,7 +27,6 @@ set number " line numbers
 set ruler " ruler in bottom right (row, col, percentage)
 set nocompatible " don't want vi compatibility mode
 set showcmd " show commands in the bottom line
-set visualbell " turn off audible bell
 set wildmenu " vim command completions show up in the status line
 set wildmode=list:longest,full
 set incsearch " incremental search
@@ -58,6 +57,7 @@ nmap <C-k> <C-w>k
 
 " build tags of your own project with Ctrl-F12
 map <C-F12> :!ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
+au BufWritePost *.cpp,*.h silent !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .
 
 if has('gui_running')
 	colorscheme wombat
