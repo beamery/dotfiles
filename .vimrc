@@ -13,8 +13,8 @@ let g:SuperTabDefaultCompletionType = "context"
 let mapleader=","
 
 " set vim options
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
 set foldmethod=syntax
 " set textwidth=80
 set foldlevelstart=20 " start folds unfolded
@@ -65,7 +65,7 @@ au BufWritePost *.cpp,*.h silent !ctags -R --sort=yes --c++-kinds=+pl --fields=+
 au BufWrite *.c,*.cpp,*.h silent! !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 
 if has('gui_running')
-	colorscheme wombat
+	colorscheme jellybeans
 	set cursorline " show line of cursor only in gvim
 endif
 

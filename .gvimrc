@@ -11,6 +11,6 @@ if os == "Linux"
     set gfn=Liberation\ Mono\ 10  
 
 elseif os == "Darwin"
-
+    set gfn=Monaco:h12
 endif
 
