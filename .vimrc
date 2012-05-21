@@ -1,3 +1,5 @@
+" Brian's .vimrc
+
 " OS specific stuff
 let os = substitute(system('uname'), "\n", "", "")
 if os == "Linux"
