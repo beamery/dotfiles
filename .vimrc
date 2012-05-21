@@ -65,7 +65,7 @@ au BufWritePost *.cpp,*.h silent !ctags -R --sort=yes --c++-kinds=+pl --fields=+
 au BufWrite *.c,*.cpp,*.h silent! !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 
 if has('gui_running')
-	colorscheme jellybeans
+	colorscheme rdark
 	set cursorline " show line of cursor only in gvim
 endif
 
@@ -100,3 +100,7 @@ set completeopt=menuone,menu,longest,preview
 " Conque Shell custom settings
 let g:ConqueTerm_InsertOnEnter = 1
 let g:ConqueTerm_CWInsert = 1
+
+" Setup VimOrganizer
+au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
+au BufEnter *.org call org#SetOrgFileType()
