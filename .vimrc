@@ -24,18 +24,19 @@ set scrolloff=5 " keep at least 5 lines around the cursor
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 
-set number " line numbers
-set ruler " ruler in bottom right (row, col, percentage)
-set nocompatible " don't want vi compatibility mode
-set showcmd " show commands in the bottom line
-set wildmenu " vim command completions show up in the status line
+syntax on	  " enable syntax highlighting
+set number	  " line numbers
+set ruler	  " ruler in bottom right (row, col, percentage)
+set nocompatible  " don't want vi compatibility mode
+set showcmd       " show commands in the bottom line
+set incsearch     " incremental search
+set autochdir     " sync current dir with current file
+set hl=l:Visual	  " use Visual Mode's highlighting for ease of reading
+set hidden	  " allow switching between buffers without saving
+set ignorecase	  " ignores case for search and replace
+set smartcase	  " if capital letters in search, turn off ignore case
+set wildmenu      " vim command completions show up in the status line
 set wildmode=list:longest,full
-set incsearch " incremental search
-set autochdir " sync current dir with current file
-set hl=l:Visual " use Visual Mode's highlighting for ease of reading
-set hidden " allow switching between buffers without saving
-set ignorecase " ignores case for search and replace
-set smartcase " if capital letters in search, turn off ignore case
 
 " setup viminfo for saving sessions
 set viminfo=%,'50,\"100,:100,n~/.viminfo
