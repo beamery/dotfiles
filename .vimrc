@@ -68,7 +68,7 @@ au BufWritePost *.cpp,*.h silent !ctags -R --sort=yes --c++-kinds=+pl --fields=+
 au BufWrite *.c,*.cpp,*.h silent! !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 
 if has('gui_running')
-	colorscheme wombat
+	colorscheme molokai
 	set cursorline " show line of cursor only in gvim
 endif
 
