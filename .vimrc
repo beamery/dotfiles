@@ -59,6 +59,8 @@ nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
+nmap j gj
+nmap k gk
 autocmd FileType python imap . .<Tab>
 
 " build tags of your own project with Ctrl-F12
