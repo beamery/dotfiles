@@ -61,8 +61,8 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap j gj
 nmap k gk
-nmap <Leader>cl :set background=light<CR>
-nmap <Leader>cd :set background=dark<CR>
+nmap <Leader>sl :set background=light<CR>
+nmap <Leader>sd :set background=dark<CR>
 autocmd FileType python imap . .<Tab>
 
 " build tags of your own project with Ctrl-F12
