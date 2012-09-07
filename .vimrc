@@ -61,6 +61,8 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap j gj
 nmap k gk
+nmap <Leader>cl :set background=light<CR>
+nmap <Leader>cd :set background=dark<CR>
 autocmd FileType python imap . .<Tab>
 
 " build tags of your own project with Ctrl-F12
@@ -71,8 +73,9 @@ au BufWritePost *.cpp,*.h silent !ctags -R --sort=yes --c++-kinds=+pl --fields=+
 au BufWrite *.c,*.cpp,*.h silent! !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 
 if has('gui_running')
-	colorscheme molokai
-	set cursorline " show line of cursor only in gvim
+      set cursorline " show line of cursor only in gvim
+      colorscheme solarized
+      set background=dark
 endif
 
 " setup omnicomplete
