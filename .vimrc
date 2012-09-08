@@ -42,7 +42,7 @@ set wildmenu      " vim command completions show up in the status line
 set wildmode=list:longest,full
 
 " setup viminfo for saving sessions
-set viminfo=%,'50,\"100,:100,n~/.viminfo
+" set viminfo=%,'50,\"100,:100,n~/.viminfo
 
 " custom key mappings
 vmap <Tab> >gv
