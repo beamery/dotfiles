@@ -19,6 +19,7 @@ set softtabstop=2
 set shiftwidth=2
 set foldmethod=manual
 " set textwidth=80
+set wrap linebreak textwidth=0
 set foldlevelstart=20 " start folds unfolded
 set scrolloff=5 " keep at least 5 lines around the cursor
 
