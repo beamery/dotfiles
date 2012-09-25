@@ -9,7 +9,10 @@
  '(custom-safe-themes (quote ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(ido-mode (quote both) nil (ido))
  '(menu-bar-mode nil)
- '(scroll-bar-mode (quote right))
+ '(org-agenda-files (quote ("~/Dropbox/org/gtd.org")))
+ '(org-mobile-directory "~/Dropbox/MobileOrg")
+ '(org-mobile-files (quote (org-agenda-files "~/Dropbox/org/")))
+ '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -28,3 +31,26 @@
 
 (package-initialize)
 (load-theme 'solarized-dark t)
+
+;; Smex initialization
+(global-set-key [(meta x)] (lambda ()
+                             (interactive)
+                             (or (boundp 'smex-cache)
+                                 (smex-initialize))
+                             (global-set-key [(meta x)] 'smex)
+                             (smex)))
+
+(global-set-key [(shift meta x)] (lambda ()
+                                   (interactive)
+                                   (or (boundp 'smex-cache)
+                                       (smex-initialize))
+                                   (global-set-key [(shift meta x)] 'smex-major-mode-commands)
+                                   (smex-major-mode-commands)))
+
+;; org-mode customizations
+(setq org-directory "~/Dropbox/org")
+(setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
