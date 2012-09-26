@@ -73,11 +73,13 @@ au BufWritePost *.cpp,*.h silent !ctags -R --sort=yes --c++-kinds=+pl --fields=+
 " autobuild tags on writing .c, .h, .cpp
 au BufWrite *.c,*.cpp,*.h silent! !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .
 
-if has('gui_running')
-      set cursorline " show line of cursor only in gvim
-      colorscheme solarized
-      set background=dark
-endif
+"if has('gui_running')
+"endif
+
+set t_Co=256 " set terminal colors
+set cursorline " show line of cursor only in gvim
+colorscheme solarized
+set background=dark
 
 " setup omnicomplete
 autocmd FileType python set omnifunc=pythoncomplete#Complete
