@@ -22,35 +22,11 @@
  )
 
 (add-to-list 'load-path "~/.emacs.d")
-
-;;; I prefer cmd key for meta
-(setq mac-option-key-is-meta nil
-      mac-command-key-is-meta t
-            mac-command-modifier 'meta
-                  mac-option-modifier 'none)
+(add-to-list 'load-path "~/.emacs.d/config")
 
 (package-initialize)
 (load-theme 'solarized-dark t)
 
-;; Smex initialization
-(global-set-key [(meta x)] (lambda ()
-                             (interactive)
-                             (or (boundp 'smex-cache)
-                                 (smex-initialize))
-                             (global-set-key [(meta x)] 'smex)
-                             (smex)))
-
-(global-set-key [(shift meta x)] (lambda ()
-                                   (interactive)
-                                   (or (boundp 'smex-cache)
-                                       (smex-initialize))
-                                   (global-set-key [(shift meta x)] 'smex-major-mode-commands)
-                                   (smex-major-mode-commands)))
-
-;; org-mode customizations
-(setq org-directory "~/Dropbox/org")
-(setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
+;; Load external config files
+(load "org-config.el")
+(load "custom-keybindings.el")
