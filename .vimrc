@@ -71,7 +71,7 @@ map <C-F12> :!ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 au BufWritePost *.cpp,*.h silent !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .
 
 " autobuild tags on writing .c, .h, .cpp
-au BufWrite *.c,*.cpp,*.h silent! !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .
+au BufWrite *.cpp,*.h silent! !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .
 
 "if has('gui_running')
 "endif
