@@ -26,5 +26,4 @@
 (global-set-key (kbd "M-2") 'split-window-below)
 (global-set-key (kbd "M-3") 'split-window-right)
 
-
 (provide 'custom-set-keybindings)
