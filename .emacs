@@ -25,14 +25,22 @@
  ;; If there is more than one, they won't work right.
  )
 
+
+(add-hook 'java-mode-hook (lambda ()
+                                (setq c-basic-offset 4
+                                      tab-width 4
+                                      indent-tabs-mode t)))
+
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/config")
 
 (package-initialize)
 (load-theme 'solarized-dark t)
 
-(require 'buffer-move)
-
 ;; Load external config files
 (load "org-config.el")
 (load "custom-keybindings.el")
+
+(add-to-list 'load-path "~/.emacs.d/evil")
+(require 'evil)
+(evil-mode 1)

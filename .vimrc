@@ -64,6 +64,7 @@ nmap j gj
 nmap k gk
 nmap <Leader>sl :set background=light<CR>
 nmap <Leader>sd :set background=dark<CR>
+nmap <Leader>!l :!latex -output-format=pdf %<CR><CR>
 autocmd FileType python imap . .<Tab>
 
 " build tags of your own project with Ctrl-F12

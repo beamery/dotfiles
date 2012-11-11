@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/brian/Dropbox/schoolStuff/cpp/a1'
-let g:netrw_dirhist_2='/Users/brian/Dropbox/schoolStuff/cpp'
-let g:netrw_dirhist_3='/Users/brian/Dropbox/schoolStuff'
-let g:netrw_dirhist_4='/Users/brian/Dropbox'
-let g:netrw_dirhist_5='/Users/brian/Dropbox/Python'
-let g:netrw_dirhist_6='scp://bmurray@best-mumble.cs.wisc.edu/'
-let g:netrw_dirhist_7='/Users/brian/.vim'
-let g:netrw_dirhist_8='/Users/brian/.emacs.d'
-let g:netrw_dirhist_9='/Users/brian/.vim'
+let g:netrw_dirhist_cnt =0

@@ -1,0 +1,26 @@
+Counting Triangles notes
+
+ • There are a total of C(n,3) combinations of 3 vertices for a given grid
+    ◦ Where n = (height + 1) * (width + 1)
+
+ • However, we must eliminate vertices which are all in a straight line.
+ • Therefore, any combinations of three vertices on a given row must be eliminated
+    ◦ For one row, this should be equal to — C((width + 1), 3) * height + 1
+       ▸ (width + 1) is the number of vertices horizontally
+       ▸ We multiply by (height + 1) for the number of total horizontal combos
+    ◦ Likewise, one column should equal — C((height + 1), 3) * width + 1
+
+ • Not quite sure how to handle the diagonal ones yet...
+    ◦ Maybe do it by brute force?
+    ◦ Actually...
+       ▸ We know that the grid is rectangular, so...
+          ▹ Take the top vertex from each column (starting in the top left)
+          ▹ Figure out how many vertices(v) are in its diagonal
+          ▹ C(v,3) to figure out the total combinations of vertices for the diagonal
+          ▹ Then...
+          ▹ Go down the left-hand side
+          ▹ Do the same for each vertex in the leftmost column
+          ▹ Multiply total result by 2 to get the total diagonal count to subtract
+
+ • I’m pretty sure that sums it up
+
