@@ -69,47 +69,37 @@ nmap <Leader>sd :set background=dark<CR>
 nmap <Leader>!l :!latex -output-format=pdf %<CR><CR>
 "autocmd FileType python imap . .<Tab>
 
-" Check if ctags exists
-for name in ['ctags', 'exuberant-ctags', 'esctags']
-  if s:CheckCtags(name, a:version)
-    let g:easytags_cmd = name
 
-" No ctags
-if !exists('g:easytags_ctags_version') || empty(g:easytags_ctags_version)
-  let msg = "Exuberant Ctags isn't installed!"
+" build tags of your own project with Ctrl-F12
+map <C-F12> :!ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
+au BufWritePost *.cpp,*.h silent !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .
 
-else " System has ctags installed
-  " build tags of your own project with Ctrl-F12
-  map <C-F12> :!ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
-  au BufWritePost *.cpp,*.h silent !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .
+" autobuild tags on writing .c, .h, .cpp
+au BufWrite *.cpp,*.h silent! !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .
 
-  " autobuild tags on writing .c, .h, .cpp
-  au BufWrite *.cpp,*.h silent! !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .
+" setup omnicomplete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 
-  " setup omnicomplete
-  autocmd FileType python set omnifunc=pythoncomplete#Complete
-  autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-  autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-  autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-  autocmd FileType c set omnifunc=ccomplete#Complete
-  au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
+set tags+=~/.vim/tags/cpp
 
-  set tags+=~/.vim/tags/cpp
+" OmniCppComplete
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" let OmniCpp_SelectFirstItem = 2
 
-
-  " OmniCppComplete
-  let OmniCpp_NamespaceSearch = 1
-  let OmniCpp_GlobalScopeSearch = 1
-  let OmniCpp_ShowAccess = 1
-  let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-  let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-  let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-  let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-  let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-  " let OmniCpp_SelectFirstItem = 2
-endif
 
 "if has('gui_running')
 "endif
