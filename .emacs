@@ -1,0 +1,5 @@
+(add-to-list 'load-path "~/.emacs.d/plugin")
+(add-to-list 'load-path "~/.emacs.d/evil")
+(require 'undo-tree)
+(require 'evil)
+(evil-mode 1)
