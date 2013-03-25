@@ -1,10 +1,15 @@
 
-;; setup Evil
+;; set up Evil
 (add-to-list 'load-path "~/.emacs.d/plugin")
 (add-to-list 'load-path "~/.emacs.d/evil")
 (require 'undo-tree)
 (require 'evil)
 (evil-mode 1)
+
+;; set up Evil keybindings
+(define-key evil-normal-state-map ",b" 'ido-switch-buffer)
+(define-key evil-normal-state-map ",f" 'ido-find-file)
+
 
 ;; setup IDO mode
 (setq ido-enale-flex-matching t)
