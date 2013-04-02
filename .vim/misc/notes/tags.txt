@@ -1,0 +1,2 @@
+staticmethod	Lecture 12 - OO Part 2
+classmethod	Lecture 12 - OO Part 2

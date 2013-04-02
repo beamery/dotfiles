@@ -1,0 +1,112 @@
+Lecture 3 - Collections
+
+ • Collection examples
+       ▸ All even numbers from 40-100
+       ▸ List of data file to be read
+       ▸ Frequency counts for a set of tokens
+       ▸ Set of all observations from an instrument
+ • List
+    ◦ Ordered
+    ◦ Variable length
+    ◦ Arbitrary objects and types
+    ◦ Access via integer position (“index”)
+       ▸ zero-based indexing
+    ◦ Mutable
+    ◦ Can store multiple data types in one list
+    ◦ Contains pointers to objects
+    ◦ Creating a list
+       ▸ names = [ ‘Tim’, ‘Nick’, ‘Dan’]
+       ▸ empty = [ ] 
+       ▸ mixed = [42, 3.14159, ‘hello’, True]
+    ◦ Accessing data in lists
+       ▸ list[index]
+    ◦ Other List Operations
+       ▸ length
+          ▹ len(a)
+       ▸ concatenate
+       ▸ membership
+       ▸ slice
+       ▸ append
+          ▹ x.append(3)
+       ▸ extend
+          ▹ x += [3, 1]
+       ▸ insert
+          ▹ x.insert(1, ‘a’)
+       ▸ delete
+          ▹ del x[1]
+       ▸ remove
+          ▹ x.pop(1)
+    ◦ List Bounds
+       ▸ valid index: int from 0 to (length - 1)
+ 
+  • Mutable vs. Immutable
+     ◦ Mutable types allow changes to objects in memory
+        ▸ Examples: list, dictionary, set
+     ◦ Immutable types
+        ▸ Examples: int, float, str, bool
+     ◦ Mutable → think objects
+     ◦ Immutable → think primitives
+
+ • Tuples
+    ◦ Immutable lists
+       ▸ When modifying it, python creates a new tuple
+    ◦ List operators work, methods do not
+    ◦ Creating a tuple
+       ▸ t = (1, 2)
+       ▸ t += (3, 4)
+          ▹ Creates a new tuple with the values (1, 2, 3, 4)
+    ◦ Accessing tuples
+       ▸ t[0]
+          ▹ Same as lists
+
+ • Dictionary
+    ◦ Unordered
+    ◦ Variable length
+    ◦ Arbitrary objects and types
+    ◦ Access via arbitrary immutable object (“key”)
+    ◦ Mutable
+    ◦ Creating a Dictionary
+       ▸ languages = { ‘en’: ‘English’, ‘fr’: ‘French’, ‘de’: ‘German’ }
+       ▸ Curly braces
+          ▹ { keyA: valueA, keyB: valueB, keyC: valueC }
+    ◦ Accessing Dictionaries
+       ▸ dictionary[key]
+          ▹ languages[ ‘en’ ] = ‘English’
+       ▸ Can take the length
+          ▹ Number of key, value pairs
+    ◦ Other Dictionary Operations
+       ▸ length len(c)
+       ▸ membership ‘an’ in c
+       ▸ safe lookup
+          ▹ c.get(‘an’) → 2
+          ▹ c.get(‘no’) → None
+       ▸ keys c.keys()
+       ▸ items c.items()
+       ▸ delete del c[’the’]
+       ▸ remove c.pop[’the’]
+
+ • Sets
+    ◦ Models mathematical concept of a set
+    ◦ undordered, variable-length, mutable collection
+    ◦ somewhat between a list and a dictionary
+    ◦ Can do union, intersection, difference, etc.
+    ◦ a = set([1, 2, 3])
+    ◦ b = set([2, 3, 4])
+
+ • Sequences and Loops
+    ◦ for-loops
+       
+      for item in seq:
+         print item
+
+      for n in range(1, 11):
+         print n
+
+    ◦ for loops in Dictionaries
+
+      for key in dict.keys():
+         print ‘%s => %s’ % (key, dict[key])
+
+      for key, value in dict.items():
+         print ‘%s => %s’ % (key, value)
+
