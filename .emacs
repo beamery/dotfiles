@@ -6,6 +6,12 @@
 (require 'evil)
 (evil-mode 1)
 
+;; set up Evil keybindings
+(define-key evil-normal-state-map ",b" 'ido-switch-buffer)
+(define-key evil-normal-state-map ",f" 'ido-find-file)
+(define-key evil-normal-state-map ",w" 'other-window)
+(define-key evil-normal-state-map ",x" 'execute-extended-command)
+
 ;; setup IDO mode
 (setq ido-enale-flex-matching t)
   (setq ido-everywhere t)
