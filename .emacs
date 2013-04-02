@@ -1,7 +1,15 @@
-
-;; setup Evil
+;; set up paths
 (add-to-list 'load-path "~/.emacs.d/plugin")
 (add-to-list 'load-path "~/.emacs.d/evil")
+
+;; initialize package management
+(require 'package)
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+;; setup Evil
 (require 'undo-tree)
 (require 'evil)
 (evil-mode 1)
@@ -10,7 +18,11 @@
 (define-key evil-normal-state-map ",b" 'ido-switch-buffer)
 (define-key evil-normal-state-map ",f" 'ido-find-file)
 (define-key evil-normal-state-map ",w" 'other-window)
-(define-key evil-normal-state-map ",x" 'execute-extended-command)
+(define-key evil-normal-state-map ",x" 'smex)
+(define-key evil-normal-state-map ",0" 'delete-window)
+(define-key evil-normal-state-map ",1" 'delete-other-windows)
+(define-key evil-normal-state-map ",2" 'split-window-vertically)
+(define-key evil-normal-state-map ",3" 'split-window-horizontally)
 
 ;; set up IDO mode
 (setq ido-enale-flex-matching t)
