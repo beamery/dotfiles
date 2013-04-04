@@ -101,13 +101,12 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " let OmniCpp_SelectFirstItem = 2
 
 
-"if has('gui_running')
-"endif
-
-set t_Co=256 " set terminal colors
-set cursorline " show line of cursor only in gvim
-colorscheme solarized
-set background=dark
+if has('gui_running')
+  set t_Co=256 " set terminal colors
+  set cursorline " show line of cursor only in gvim
+  colorscheme solarized
+  set background=dark
+endif
 
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
