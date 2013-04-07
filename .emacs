@@ -13,6 +13,7 @@
 (require 'undo-tree)
 (require 'evil)
 (evil-mode 1)
+(setq evil-insert-state-cursor 'box)
 
 ;; set up Evil keybindings
 (define-key evil-normal-state-map ",b" 'ido-switch-buffer)
