@@ -9,6 +9,10 @@
       "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
+;; set up color themes
+(add-to-list 'load-path "~/.emacs.d/color-theme")
+(require 'color-theme)
+
 ;; setup Evil
 (require 'undo-tree)
 (require 'evil)
