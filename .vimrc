@@ -28,7 +28,7 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd Filetype java setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd Filetype java setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
 
 
 syntax on	  " enable syntax highlighting
