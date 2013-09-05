@@ -15,8 +15,8 @@ let g:SuperTabDefaultCompletionType = "context"
 let mapleader=","
 
 " set vim options
-set softtabstop=2
-set shiftwidth=2
+set softtabstop=4
+set shiftwidth=4
 set foldmethod=manual
 " set textwidth=80
 set wrap linebreak textwidth=0
