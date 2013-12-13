@@ -24,6 +24,7 @@ set foldmethod=manual
 set wrap linebreak textwidth=0
 set foldlevelstart=20 " start folds unfolded
 set scrolloff=5 " keep at least 5 lines around the cursor
+set backspace=indent,eol,start
 
 " set filetype specific indentation
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
