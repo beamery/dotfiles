@@ -74,7 +74,7 @@ if !has_key(g:syntastic_mode_map, "active_filetypes")
 endif
 
 if !has_key(g:syntastic_mode_map, "passive_filetypes")
-    let g:syntastic_mode_map['passive_filetypes'] = []
+    let g:syntastic_mode_map['passive_filetypes'] = ['python']
 endif
 
 if !exists("g:syntastic_check_on_open")

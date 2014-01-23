@@ -27,11 +27,13 @@ set scrolloff=5 " keep at least 5 lines around the cursor
 set backspace=indent,eol,start
 
 " set filetype specific indentation
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
-autocmd FileType css setlocal shiftwidth=2 softtabstop=2
-autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd Filetype java setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd Filetype java setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 
 syntax on	  " enable syntax highlighting
