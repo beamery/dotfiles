@@ -64,10 +64,11 @@ nmap <Leader>n :noh<CR>
 nmap <Tab> >>
 nmap <S-Tab> <<
 nmap ' `
-nmap <C-h> <C-w>h
-nmap <C-l> <C-w>l
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
+"nmap <C-h> <C-w>h
+"nmap <C-l> <C-w>l
+"nmap <C-j> <C-w>j
+"nmap <C-k> <C-w>k
+nmap <C-l> zz
 nmap j gj
 nmap k gk
 nmap <Leader>sl :set background=light<CR>
