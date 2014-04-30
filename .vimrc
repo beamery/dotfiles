@@ -34,6 +34,7 @@ autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd Filetype java setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 
 syntax on	  " enable syntax highlighting

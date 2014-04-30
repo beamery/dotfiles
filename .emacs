@@ -53,7 +53,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(menu-bar-mode nil)
- '(org-agenda-files (quote ("~/Dropbox/org/gtd.org" "~/Dropbox/org/birthday.org")))
+ '(org-agenda-files (quote ("~/Dropbox/org/tickler.org" "~/Dropbox/org/gtd.org" "~/Dropbox/org/birthday.org")))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -65,7 +65,7 @@
 
 ;; Set up color theme ;;
 (setq evil-default-cursor t) ;; Now evil takes the default colors
-(load-theme 'deeper-blue)
+;;(load-theme 'deeper-blue)
 ;; Hack that gives me a zenburn color theme for ansi-term
 (setq ansi-term-color-vector
       [unspecified "#3f3f3f" "#cc9393" "#7f9f7f" "#f0dfaf" "#8cd0d3" "#dc8cc3" "#93e0e3" "#dcdccc"])
