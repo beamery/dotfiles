@@ -1,17 +1,45 @@
 " Brian's .vimrc
 
-" OS specific stuff
+set nocompatible  " don't want vi compatibility mode
+
 let os = substitute(system('uname'), "\n", "", "")
 if os == "Linux"
+    " Google-specific stuff
+    source /usr/share/vim/google/default.vim
+    source /usr/share/vim/google/gtags.vim
 
-elseif os == "Darwin"
-
+    " GTags keymapping
+    nnoremap <C-]> :exe 'let searchtag= "' . expand('<cword>') . '"' \| :exe 'let @/= "' . searchtag . '"'<CR> \| :exe 'Gtlist ' . searchtag <CR>
+    nnoremap <C-]> :exe 'Gtlist ' . expand('<cword>')<CR>
+    nnoremap ,cs :execute ":!google-chrome --new-window https://cs.corp.google.com\\#%:p:s?.*./google3/?google3/?\\&l=" . line('.')<CR> <CR>
+    " /Google
 endif
 
-silent! call pathogen#runtime_append_all_bundles()
 
-filetype plugin indent on
-let g:SuperTabDefaultCompletionType = "context"
+" OS-specific stuff
+"let os = substitute(system('uname'), "\n", "", "")
+"if os == "Linux"
+"
+"elseif os == "Darwin"
+"
+"endif
+"
+call pathogen#infect()
+
+call plug#begin()
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
 let mapleader=","
 
 " set vim options
@@ -19,111 +47,87 @@ set softtabstop=4
 set shiftwidth=4
 set tabstop=4
 set expandtab
-set foldmethod=manual
-" set textwidth=80
-set wrap linebreak textwidth=0
-set foldlevelstart=20 " start folds unfolded
+"set foldmethod=manual
+"set textwidth=80
+"set wrap linebreak textwidth=0
+"set foldlevelstart=20 " start folds unfolded
 set scrolloff=5 " keep at least 5 lines around the cursor
-set backspace=indent,eol,start
+"set backspace=indent,eol,start
 
 " set filetype specific indentation
+autocmd FileType sh setlocal shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=81
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
-autocmd Filetype java setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=81
+autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=81
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=81
+autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=81
+autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd Filetype java setlocal shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=101
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType text setlocal textwidth=80 shiftwidth=2 tabstop=2 softtabstop=2
 
-
-syntax on	  " enable syntax highlighting
-set number	  " line numbers
-set ruler	  " ruler in bottom right (row, col, percentage)
-set nocompatible  " don't want vi compatibility mode
-set showcmd       " show commands in the bottom line
-set incsearch     " incremental search
-set autochdir     " sync current dir with current file
-set hl=l:Visual	  " use Visual Mode's highlighting for ease of reading
-set hidden	  " allow switching between buffers without saving
-set ignorecase	  " ignores case for search and replace
-set smartcase	  " if capital letters in search, turn off ignore case
-set wildmenu      " vim command completions show up in the status line
-set wildmode=list:longest,full
-
-" setup viminfo for saving sessions
-" set viminfo=%,'50,\"100,:100,n~/.viminfo
+syntax on           " enable syntax highlighting
+set number          " line numbers
+set ruler           " ruler in bottom right (row, col, percentage)
+"set showcmd        " show commands in the bottom line
+set incsearch       " incremental search
+"set autochdir       " sync current dir with current file
+set hl=l:Visual	    " use Visual Mode's highlighting for ease of reading
+set hidden	        " allow switching between buffers without saving
+set ignorecase	    " ignores case for search and replace
+set smartcase	    " if capital letters in search, turn off ignore case
+set smartindent
+set nohlsearch
+"set wildmenu        " vim command completions show up in the status line
+"set wildmode=list:longest,full
 
 " custom key mappings
 vmap <Tab> >gv
 vmap <S-Tab> <gv
+
+" FZF
+" Insert mode completion
+imap <c-k> <plug>(fzf-complete-word)
+imap <c-f> <plug>(fzf-complete-path)
+imap <c-j> <plug>(fzf-complete-file-ag)
+imap <c-l> <plug>(fzf-complete-line)
+
+nmap <Leader>f :Files<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>a :Ag<Space>
 nmap <Leader>t :NERDTreeToggle<CR>
-nmap <Leader>l :TlistToggle<CR>
-nmap <Leader>f :FufFile<CR>
-nmap <Leader>b :FufBuffer<CR>
-nmap <Leader>n :noh<CR>
-nmap <Tab> >>
-nmap <S-Tab> <<
+nmap <Leader>n :NERDTreeFind<CR>
+
+" OS clipboard copy/paste.
+vmap <Leader>c "+y
+nmap <Leader>v "+p
+
+"nmap <Leader>f :FufFile<CR>
+"nmap <Leader>b :FufBuffer<CR>
+"nmap <Leader>r :FufRenewCache<CR>
+"nmap <Leader>n :noh<CR>
+"nmap <Leader>t :NERDTreeToggle<CR>
+"nmap <Tab> >>
+"nmap <S-Tab> <<
 nmap ' `
-"nmap <C-h> <C-w>h
-"nmap <C-l> <C-w>l
-"nmap <C-j> <C-w>j
-"nmap <C-k> <C-w>k
 nmap <C-l> zz
 nmap j gj
 nmap k gk
-nmap <Leader>sl :set background=light<CR>
-nmap <Leader>sd :set background=dark<CR>
-nmap <Leader>!l :!latex -output-format=pdf %<CR><CR>
-"autocmd FileType python imap . .<Tab>
+nmap H ^
+nmap L $
 
+let g:airline_powerline_fonts = 1
 
-" build tags of your own project with Ctrl-F12
-map <C-F12> :!ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
-au BufWritePost *.cpp,*.h silent !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .
+set cursorline
+hi CursorLine term=bold cterm=bold guibg=Grey40
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
-" autobuild tags on writing .c, .h, .cpp
-au BufWrite *.cpp,*.h silent! !ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .
+" Allow mouse scrolling
+set mouse=a
 
-" setup omnicomplete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
-
-set tags+=~/.vim/tags/cpp
-
-" OmniCppComplete
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-" let OmniCpp_SelectFirstItem = 2
-
-
-if has('gui_running')
-  set t_Co=256 " set terminal colors
-  set cursorline " show line of cursor only in gvim
-  colorscheme solarized
-  set background=dark
-endif
-
-" automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
-
-" Conque Shell custom settings
-let g:ConqueTerm_InsertOnEnter = 1
-let g:ConqueTerm_CWInsert = 1
-
-" Setup VimOrganizer
-au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
-au BufEnter *.org call org#SetOrgFileType()
+filetype plugin indent on " Should be the last line in .vimrc

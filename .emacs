@@ -1,3 +1,7 @@
+;; Google-specific setup
+(require 'google)
+(require 'citc)
+
 ;; set up paths
 (add-to-list 'load-path "~/.emacs.d/plugin")
 (add-to-list 'load-path "~/.emacs.d/evil")
@@ -10,8 +14,9 @@
 (package-initialize)
 
 ;; setup Evil
-(require 'undo-tree)
+(setq evil-want-C-i-jump nil) ;; Make Evil TAB key work in org mode.
 (require 'evil)
+(require 'undo-tree)
 (evil-mode 1)
 (setq evil-insert-state-cursor 'box)
 
@@ -20,6 +25,7 @@
 (define-key evil-normal-state-map ",f" 'ido-find-file)
 (define-key evil-normal-state-map ",w" 'other-window)
 (define-key evil-normal-state-map ",x" 'smex)
+(define-key evil-normal-state-map ",q" 'fill-paragraph)
 (define-key evil-normal-state-map ",0" 'delete-window)
 (define-key evil-normal-state-map ",1" 'delete-other-windows)
 (define-key evil-normal-state-map ",2" 'split-window-vertically)
@@ -33,7 +39,6 @@
 ;; set up Markdown mode
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
@@ -53,7 +58,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(menu-bar-mode nil)
- '(org-agenda-files (quote ("~/Dropbox/org/tickler.org" "~/Dropbox/org/gtd.org" "~/Dropbox/org/birthday.org")))
+ '(org-agenda-files (quote ("~/org/tickler.org" "~/org/gtd.org" "~/org/birthday.org")))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -66,6 +71,7 @@
 ;; Set up color theme ;;
 (setq evil-default-cursor t) ;; Now evil takes the default colors
 ;;(load-theme 'deeper-blue)
+(load-theme 'wombat)
 ;; Hack that gives me a zenburn color theme for ansi-term
 (setq ansi-term-color-vector
       [unspecified "#3f3f3f" "#cc9393" "#7f9f7f" "#f0dfaf" "#8cd0d3" "#dc8cc3" "#93e0e3" "#dcdccc"])

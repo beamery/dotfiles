@@ -13,3 +13,4 @@ elseif os == "Darwin"
     set gfn=Monaco:h12
 endif
 
+colorscheme desert
