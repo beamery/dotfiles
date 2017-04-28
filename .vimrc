@@ -43,6 +43,7 @@ Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neomake/neomake'
+Plug 'morhetz/gruvbox'
 "Plug 'vim-syntastic/syntastic'
 
 call plug#end()
@@ -115,6 +116,7 @@ autocmd FileType text setlocal textwidth=80 shiftwidth=2 tabstop=2 softtabstop=2
 autocmd Filetype bzl AutoFormatBuffer buildifier
 
 syntax on           " enable syntax highlighting
+colorscheme gruvbox
 set number          " line numbers
 set ruler           " ruler in bottom right (row, col, percentage)
 "set showcmd        " show commands in the bottom line
