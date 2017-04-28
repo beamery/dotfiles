@@ -47,10 +47,10 @@ Plug 'neomake/neomake'
 
 call plug#end()
 
-" Neomake
-autocmd! BufWritePost,BufEnter * Neomake
-
 if os == "Linux"
+  " Neomake
+  autocmd! BufWritePost,BufEnter * Neomake
+
   "let g:neomake_remove_invalid_entries = 1
   let g:neomake_highlight_columns = 0
 
