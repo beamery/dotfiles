@@ -6,18 +6,18 @@ let mapleader=","
 
 let os = substitute(system('uname'), "\n", "", "")
 if os == "Linux"
-    " Google-specific stuff
-    source /usr/share/vim/google/google.vim
-    source /usr/share/vim/google/gtags.vim
+  " Google-specific stuff
+  source /usr/share/vim/google/google.vim
+  source /usr/share/vim/google/gtags.vim
 
-    Glug codefmt
-    Glug codefmt-google
+  Glug codefmt
+  Glug codefmt-google
 
-    Glug clang-format plugin[mappings]="\\f"
-    Glug piper plugin[mappings]
-    Glug relatedfiles plugin[mappings]
+  Glug clang-format plugin[mappings]="\\f"
+  Glug piper plugin[mappings]
+  Glug relatedfiles plugin[mappings]
 
-    " /Google
+  " /Google
 endif
 
 
@@ -49,40 +49,43 @@ call plug#end()
 
 " Neomake
 autocmd! BufWritePost,BufEnter * Neomake
-"let g:neomake_remove_invalid_entries = 1
-let g:neomake_highlight_columns = 0
 
-let g:neomake_javascript_glint_maker = {
-    \ 'append_file': 0,
-    \ 'args': ['%'],
-    \ 'exe': '/google/data/ro/teams/devtools/glint/linters/live/Linter_deploy.jar',
-    \ 'errorformat': '%f:%l:%c: %tRROR - %m,%f:%l: %tRROR - %m,%f:%l:%c: %tARNING - %m,%f:%l: %tARNING - %m',
+if os == "Linux"
+  "let g:neomake_remove_invalid_entries = 1
+  let g:neomake_highlight_columns = 0
+
+  let g:neomake_javascript_glint_maker = {
+      \ 'append_file': 0,
+      \ 'args': ['%'],
+      \ 'exe': '/google/data/ro/teams/devtools/glint/linters/live/Linter_deploy.jar',
+      \ 'errorformat': '%f:%l:%c: %tRROR - %m,%f:%l: %tRROR - %m,%f:%l:%c: %tARNING - %m,%f:%l: %tARNING - %m',
+      \ }
+  let g:neomake_javascript_enabled_makers = ['glint']
+
+  let g:neomake_python_gpylint_maker = {
+      \ 'args': ['--msg-template="{path}:{line}: ({symbol}): {msg}"'],
+      \ 'errorformat': '%f:%l: %m,',
+      \ }
+  let g:neomake_python_enabled_makers = ['gpylint']
+
+  let g:neomake_java_gcheckstyle_maker = {
+      \ 'exe': '/home/build/google3/tools/java/checkstyle/gcheckstyle.sh',
+      \ 'errorformat': '[%tARN] %f:%l:%m,Caused by: %f:%l:%m,%f:%l:%m',
+      \ }
+  let g:neomake_java_enabled_makers = ['gcheckstyle']
+
+  highlight NeomakeWarningMsg ctermfg=227 ctermbg=237
+  highlight NeomakeErrorMsg ctermfg=9 ctermbg=237
+  let g:neomake_warning_sign = {
+    \ 'text': '●',
+    \ 'texthl': 'NeomakeWarningMsg',
     \ }
-let g:neomake_javascript_enabled_makers = ['glint']
-
-let g:neomake_python_gpylint_maker = {
-    \ 'args': ['--msg-template="{path}:{line}: ({symbol}): {msg}"'],
-    \ 'errorformat': '%f:%l: %m,',
+  let g:neomake_error_sign = {
+    \ 'text': '●',
+    \ 'texthl': 'NeomakeErrorMsg',
     \ }
-let g:neomake_python_enabled_makers = ['gpylint']
-
-let g:neomake_java_gcheckstyle_maker = {
-    \ 'exe': '/home/build/google3/tools/java/checkstyle/gcheckstyle.sh',
-    \ 'errorformat': '[%tARN] %f:%l:%m,Caused by: %f:%l:%m,%f:%l:%m',
-    \ }
-let g:neomake_java_enabled_makers = ['gcheckstyle']
-
-highlight NeomakeWarningMsg ctermfg=227 ctermbg=237
-highlight NeomakeErrorMsg ctermfg=9 ctermbg=237
-let g:neomake_warning_sign = {
-  \ 'text': '●',
-  \ 'texthl': 'NeomakeWarningMsg',
-  \ }
-let g:neomake_error_sign = {
-  \ 'text': '●',
-  \ 'texthl': 'NeomakeErrorMsg',
-  \ }
-" /Neomake
+  " /Neomake
+endif
 
 
 " set vim options
