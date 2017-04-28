@@ -2,16 +2,21 @@
 
 set nocompatible  " don't want vi compatibility mode
 
+let mapleader=","
+
 let os = substitute(system('uname'), "\n", "", "")
 if os == "Linux"
     " Google-specific stuff
-    source /usr/share/vim/google/default.vim
+    source /usr/share/vim/google/google.vim
     source /usr/share/vim/google/gtags.vim
 
-    " GTags keymapping
-    nnoremap <C-]> :exe 'let searchtag= "' . expand('<cword>') . '"' \| :exe 'let @/= "' . searchtag . '"'<CR> \| :exe 'Gtlist ' . searchtag <CR>
-    nnoremap <C-]> :exe 'Gtlist ' . expand('<cword>')<CR>
-    nnoremap ,cs :execute ":!google-chrome --new-window https://cs.corp.google.com\\#%:p:s?.*./google3/?google3/?\\&l=" . line('.')<CR> <CR>
+    Glug codefmt
+    Glug codefmt-google
+
+    Glug clang-format plugin[mappings]="\\f"
+    Glug piper plugin[mappings]
+    Glug relatedfiles plugin[mappings]
+
     " /Google
 endif
 
@@ -37,10 +42,48 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'neomake/neomake'
+"Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
-let mapleader=","
+" Neomake
+autocmd! BufWritePost,BufEnter * Neomake
+"let g:neomake_remove_invalid_entries = 1
+let g:neomake_highlight_columns = 0
+
+let g:neomake_javascript_glint_maker = {
+    \ 'append_file': 0,
+    \ 'args': ['%'],
+    \ 'exe': '/google/data/ro/teams/devtools/glint/linters/live/Linter_deploy.jar',
+    \ 'errorformat': '%f:%l:%c: %tRROR - %m,%f:%l: %tRROR - %m,%f:%l:%c: %tARNING - %m,%f:%l: %tARNING - %m',
+    \ }
+let g:neomake_javascript_enabled_makers = ['glint']
+
+let g:neomake_python_gpylint_maker = {
+    \ 'args': ['--msg-template="{path}:{line}: ({symbol}): {msg}"'],
+    \ 'errorformat': '%f:%l: %m,',
+    \ }
+let g:neomake_python_enabled_makers = ['gpylint']
+
+let g:neomake_java_gcheckstyle_maker = {
+    \ 'exe': '/home/build/google3/tools/java/checkstyle/gcheckstyle.sh',
+    \ 'errorformat': '[%tARN] %f:%l:%m,Caused by: %f:%l:%m,%f:%l:%m',
+    \ }
+let g:neomake_java_enabled_makers = ['gcheckstyle']
+
+highlight NeomakeWarningMsg ctermfg=227 ctermbg=237
+highlight NeomakeErrorMsg ctermfg=9 ctermbg=237
+let g:neomake_warning_sign = {
+  \ 'text': '●',
+  \ 'texthl': 'NeomakeWarningMsg',
+  \ }
+let g:neomake_error_sign = {
+  \ 'text': '●',
+  \ 'texthl': 'NeomakeErrorMsg',
+  \ }
+" /Neomake
+
 
 " set vim options
 set softtabstop=4
@@ -61,11 +104,12 @@ autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=81
 autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=81
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=81
-autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=81
+autocmd FileType python setlocal shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=81
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd Filetype java setlocal shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=101
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType text setlocal textwidth=80 shiftwidth=2 tabstop=2 softtabstop=2
+autocmd Filetype bzl AutoFormatBuffer buildifier
 
 syntax on           " enable syntax highlighting
 set number          " line numbers
@@ -92,7 +136,6 @@ imap <c-k> <plug>(fzf-complete-word)
 imap <c-f> <plug>(fzf-complete-path)
 imap <c-j> <plug>(fzf-complete-file-ag)
 imap <c-l> <plug>(fzf-complete-line)
-
 nmap <Leader>f :Files<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>a :Ag<Space>
@@ -100,12 +143,12 @@ nmap <Leader>t :NERDTreeToggle<CR>
 nmap <Leader>n :NERDTreeFind<CR>
 
 " OS clipboard copy/paste.
-vmap <Leader>c "+y
+vmap <Leader>y "+y
 nmap <Leader>v "+p
 
 "nmap <Leader>f :FufFile<CR>
 "nmap <Leader>b :FufBuffer<CR>
-"nmap <Leader>r :FufRenewCache<CR>
+nmap <Leader>n :FufRenewCache<CR>
 "nmap <Leader>n :noh<CR>
 "nmap <Leader>t :NERDTreeToggle<CR>
 "nmap <Tab> >>
@@ -116,6 +159,8 @@ nmap j gj
 nmap k gk
 nmap H ^
 nmap L $
+nmap ]l :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>ll<bar>endtry<cr>
+nmap [l :try<bar>lprev<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>ll<bar>endtry<cr>
 
 let g:airline_powerline_fonts = 1
 

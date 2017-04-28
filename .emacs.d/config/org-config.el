@@ -15,17 +15,17 @@
 ;; org-mode capture templates
 (setq org-capture-templates
   '(("a" "Action" entry (file+headline "~/org/gtd.org" "Inbox")
-     "* TODO %?\n CREATED: %U\n %i")
+     "* TODO %?\n  CREATED: %U\n %i")
     ("t" "Thought" entry (file+headline "~/org/gtd.org" "Inbox")
-     "* %?\n CREATED: %U\n %i")
+     "* %?\n  CREATED: %U\n %i")
     ("n" "Note" entry (file+headline "~/org/notes.org" "Notes")
-     "* %?\n CREATED: %U\n %i")
+     "* %?\n  CREATED: %U\n %i")
     ("s" "Status" entry (file+datetree "~/org/notes.org")
      "* %?\n %i")
     ("k" "Tickler" entry (file+headline "~/org/tickler.org" "Tickler")
-     "* %?\n CREATED: %U\n")
+     "* %?\n  CREATED: %U\n")
     ("p" "Project" entry (file+headline "~/org/gtd.org" "Projects")
-     "* %^{name}\n :PROPERTIES:\n :CATEGORY: %\\1\n :END:\n")))
+     "* %^{name}\n  :PROPERTIES:\n  :CATEGORY: %\\1\n  :END:\n")))
 
 ;; Targets include this file and any file contributing to the agenda
 (setq org-refile-targets (quote ((nil :maxlevel . 3)
