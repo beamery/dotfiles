@@ -115,8 +115,10 @@ autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType text setlocal textwidth=80 shiftwidth=2 tabstop=2 softtabstop=2
 autocmd Filetype bzl AutoFormatBuffer buildifier
 
-syntax on           " enable syntax highlighting
 colorscheme gruvbox
+set background=dark
+
+syntax on           " enable syntax highlighting
 set number          " line numbers
 set ruler           " ruler in bottom right (row, col, percentage)
 "set showcmd        " show commands in the bottom line
@@ -141,6 +143,8 @@ imap <c-k> <plug>(fzf-complete-word)
 imap <c-f> <plug>(fzf-complete-path)
 imap <c-j> <plug>(fzf-complete-file-ag)
 imap <c-l> <plug>(fzf-complete-line)
+imap kj <Esc>
+imap jk <Esc>
 nmap <Leader>f :Files<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>a :Ag<Space>
