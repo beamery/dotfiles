@@ -79,12 +79,12 @@
 
 case ${JARTPS1_THEME:-default} in
   default)
-    PS1="\[\e[1;30m\]\D{%T }\[\e[1;31m\]\$(ps1_error)\[\e[34m\]\$(ps1_jobs \j)\[\e[32m\]\$(ps1_citc)\$(ps1_git)\$(ps1_x20)\[\e[0m\]\u@\h\[\e[m\]:\$(ps1_dir)\$ "
+    PS1="\[\e[1;30m\]\D{%T }\[\e[1;31m\]\$(ps1_error)\[\e[34m\]\$(ps1_jobs \j)\[\e[32m\]\$(ps1_citc)\$(ps1_git)\$(ps1_x20)\$(ps1_fig)\[\e[0m\]\u@\h\[\e[m\]:\$(ps1_dir)\$ "
     PS2='> '
     PS4='+ '
     ;;
   dark)
-    PS1="\[\e[1;30m\]\D{%T }\[\e[1;31m\]\$(ps1_error)\[\e[34m\]\$(ps1_jobs \j)\[\e[32m\]\$(ps1_citc)\$(ps1_git)\$(ps1_x20)\[\e[0;95m\]\u@\h\[\e[m\]:\[\e[0;96m\]\$(ps1_dir)\[\e[0m\]\$ "
+    PS1="\[\e[1;30m\]\D{%T }\[\e[1;31m\]\$(ps1_error)\[\e[34m\]\$(ps1_jobs \j)\[\e[32m\]\$(ps1_citc)\$(ps1_git)\$(ps1_x20)\$(ps1_fig)\[\e[0;95m\]\u@\h\[\e[m\]:\[\e[0;96m\]\$(ps1_dir)\[\e[0m\]\$ "
     PS2='> '
     PS4='+ '
     ;;
@@ -128,6 +128,15 @@ ps1_git() {
     g5_client="$(pwd | awk '/google3/ { match($0, /([^/]+)\/google3/, arr); print arr[1]}')"
     g5_client=${g5_client:-g5}
     printf  "%s:%s " "${g5_client}" "${jartps1_gitbranch}"
+  fi
+}
+
+ps1_fig() {
+  local fig_client
+  if jartps1_figinfo_find; then
+    fig_client="$(pwd | awk '/google3/ { match($0, /([^/]+)\/google3/, arr); print arr[1]}')"
+    fig_client=${fig_client:-fig}
+    printf  "%s:%s " "${fig_client}" "${jartps1_figinfo}"
   fi
 }
 
@@ -203,6 +212,22 @@ jartps1_gitbranch_find() {
         return 0
       fi
     fi
+  fi
+  return 1
+}
+
+jartps1_figinfo_find() {
+  local hg_bookmark
+  local hg_dir
+  if [[ $PWD == *"/fig/"* ]]; then
+    hg_dir="$(pwd | awk '/google3/ { match($0, /(.+)\/google3/, arr); print arr[1]}')"
+    if [ "$hg_dir" != "" ] && [ -f $hg_dir/.hg/bookmarks.current ]; then
+      hg_bookmark="$(cat $hg_dir/.hg/bookmarks.current)"
+      jartps1_figinfo="$hg_bookmark"
+    else
+      jartps1_figinfo="$(hg id | awk '{ print $1 }')"
+    fi
+    return 0
   fi
   return 1
 }

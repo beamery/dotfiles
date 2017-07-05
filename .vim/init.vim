@@ -1,1 +1,1 @@
-/usr/local/google/home/brianmurray/.vimrc
+../.vimrc
