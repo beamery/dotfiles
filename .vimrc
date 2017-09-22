@@ -13,7 +13,7 @@ if os == "Linux"
   Glug codefmt
   Glug codefmt-google
 
-  Glug clang-format plugin[mappings]="\\f"
+  "Glug clang-format plugin[mappings]="\\f"
   Glug piper plugin[mappings]
   Glug relatedfiles plugin[mappings]
 
@@ -39,7 +39,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neomake/neomake'
@@ -183,6 +182,8 @@ nmap <Leader>a :Ag<Space>
 nmap <Leader>l :Lines<CR>
 nmap <Leader>t :NERDTreeToggle<CR>
 nmap <Leader>n :NERDTreeFind<CR>
+
+vmap <Bslash>f :FormatLines<CR>
 
 " OS clipboard copy/paste.
 vmap <Leader>y "+y

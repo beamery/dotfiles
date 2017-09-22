@@ -109,11 +109,15 @@ ps1_jobs() {
 
 ps1_citc() {
   local citc
+  local base_dir
   case "${PWD}" in
     /google/src/cloud/*/*/google3*)
       citc="${PWD#/google/src/cloud/*/}"
       citc="${citc/\/*/}"
-      if [[ "${citc}" == switch_client ]]; then
+      base_dir="$(pwd | sed 's/\/google3.*//')"
+      if [[ -d ${base_dir}/.hg ]]; then
+          printf "fitC:%s " "${citc}"
+      elif [[ "${citc}" == switch_client ]]; then
           printf "switch:%s " "$(g4 switches | awk '{ print $2 }')"
       else
           printf "p4:%s " "${citc}"
@@ -220,13 +224,7 @@ jartps1_figinfo_find() {
   local hg_bookmark
   local hg_dir
   if [[ $PWD == *"/fig/"* ]]; then
-    hg_dir="$(pwd | awk '/google3/ { match($0, /(.+)\/google3/, arr); print arr[1]}')"
-    if [ "$hg_dir" != "" ] && [ -f $hg_dir/.hg/bookmarks.current ]; then
-      hg_bookmark="$(cat $hg_dir/.hg/bookmarks.current)"
-      jartps1_figinfo="$hg_bookmark"
-    else
-      jartps1_figinfo="$(hg id | awk '{ print $1 }')"
-    fi
+    jartps1_figinfo="$(hg l -r . | awk '/@/ { print $2 }')"
     return 0
   fi
   return 1

@@ -150,33 +150,32 @@ alias gws-run-debug='gws/tools/startgws.py --port=8887 --binary=blaze-bin/gws/gw
 alias gws-run-borg='/google/data/ro/projects/gws/tools/start_gws_on_borg     --keep_running     --cell=pa     --use_custom_googledata      --custom_googledata_tarball_output_path=$PWD/blaze-bin/gws/tools/googledata.tgz     --sffe_rebuild_data_tarball     --borg_ephemeral_packages --charged_user=eval-service-quality'
 alias gws-run-with-gfe='gws/tools/startgws.py --port=8887 --also_launch_gfe --gfe_ssl_port=8886 --binary=blaze-bin/gws/gws --alsologtostderr'
 alias gws-sync-green='/home/build/static/projects/testing/tap/scripts/tap_sync gws,gws.googledata,gws.binary_and_data'
+alias gws-instanter='/google/data/ro/projects/gws/tools/start_gws_on_borg --instanter  --always_sync'
 
 ################################ Doodles ######################################
 alias pineapple-make='blaze run --android_sdk=//third_party/java/android/android_sdk_linux/platforms/prerelease:android_sdk_tools //java/com/google/android/apps/doodles/pineapple:run'
 alias vday-make='blaze run //java/com/google/android/apps/doodles/vday17:run'
 alias cdv='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/googledata/html/js/egg/vday17"}'"')"
+alias cddb='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/third_party/javascript/doodle_blocks"}'"')"
 alias cdf='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/googledata/html/js/egg/fischinger"}'"')"
 alias cdl='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/googledata/html/js/egg/logo17"}'"')"
 alias cdc='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/services/appengine/internal_apps/doodlecannon"}'"')"
 alias cdx='cd /google/data/rw/users/br/brianmurray'
 alias cdex='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/experimental/users/brianmurray"}'"')"
+alias cdwasm='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/experimental/doodles/hackathon/wasm"}'"')"
 
 ################################# Shared #######################################
 alias milldump='/google/data/ro/projects/logs/milldump'
 alias aswb='/opt/android-studio-with-blaze-stable/bin/studio.sh'
 alias killaswb='ps -Af | egrep "aswb|blaze" | awk '\''{print $2}'\'' | xargs kill -9'
-alias g5d='cd $(pwd | awk -F google3 '"'"'{print $1"/google3"}'"')"
+alias cdg='cd $(pwd | awk -F google3 '"'"'{print $1"/google3"}'"')"
 alias g5='git5'
 alias g4-basecl='srcfs get_readonly'
 alias open='gnome-open'
 alias va='find -L . -type f -exec vim {} +'
 alias fix-auth='eval $(ssh-agent -s)'
+#alias tmux='/usr/bin/tmx'
 
-
-function vim-logo() {
-  g4d
-  vim googledata/html/js/egg/logo17/**/* third_party/javascript/scratch_blockly/**/*
-}
 
 function run_doodle_server() {
     if [ -n "$TMUX" ]; then
@@ -192,6 +191,14 @@ function oskar_demo() {
 
 function logo_on_appengine() {
   stage_on_appengine.sh logo17 2017 $1
+}
+
+function logo_on_public_appengine() {
+  stage_on_appengine.sh logo17 2017 $1 true
+}
+
+function update_logo_stable() {
+  logo_on_appengine logo-stable && logo_on_public_appengine logo-stable
 }
 
 function sidekick_run() {
@@ -229,15 +236,17 @@ export FZF_DEFAULT_COMMAND='find .'
 
 # Source ~/.bashrc whenever it changes
 function source_bashrc_if_changed() {
-    NEW_BASHRC_CHANGETIME=$(stat -c %z ~/.bashrc)
+    BASHRC_PATH=$(readlink -f ~/.bashrc)
+    NEW_BASHRC_CHANGETIME=$(stat -c %z $BASHRC_PATH)
     if [ "$NEW_BASHRC_CHANGETIME" != "$BASHRC_CHANGETIME" ]; then
         if [ -n "$BASHRC_CHANGETIME" ]; then
-            echo "~/.bashrc changed at $NEW_BASHRC_CHANGETIME -- sourcing"
-            source ~/.bashrc
+            echo "$BASHRC_PATH changed at $NEW_BASHRC_CHANGETIME -- sourcing"
+            source $BASHRC_PATH
         fi
         BASHRC_CHANGETIME=$NEW_BASHRC_CHANGETIME
     fi
 }
+export PROMPT_COMMAND="source_bashrc_if_changed"
 
 # /PERSONAL SETTINGS
 

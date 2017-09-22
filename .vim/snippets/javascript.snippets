@@ -5,3 +5,30 @@ snippet gid
 # goog.isDefAndNotNull()
 snippet gidn
 	goog.isDefAndNotNull(${0})
+
+# goog.module('')
+snippet gm
+	goog.module('${0}');
+
+# goog.require('')
+snippet gr
+	goog.require('${0}');
+
+# for (const of)
+snippet forc
+	for (const ${1:item} of ${2:list}) {
+		${0}
+	}
+# for (i = ...)
+snippet for "for (...) {...}"
+	for (let ${1:i} = 0, ${2:len} = ${3:Things.length}; $1 < $2; $1++) {
+		${0:${VISUAL}}
+	}
+# reversed for (i = ...)
+snippet forr "reversed for (...) {...}"
+	for (let ${2:i} = ${1:Things.length} - 1; $2 >= 0; $2--) {
+		${0:${VISUAL}}
+	}
+# console.log()
+snippet cl
+	console.log(${0});

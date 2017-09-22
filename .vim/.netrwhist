@@ -1,10 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/google/src/cloud/brianmurray/switch_client/google3/java/com/google/android/apps/gsa/search/api'
-let g:netrw_dirhist_2='/usr/local/google/home/brianmurray/android-sdk-linux'
-let g:netrw_dirhist_3='/usr/local/google/home/brianmurray/.config/chrome-remote-desktop'
-let g:netrw_dirhist_4='/usr/local/google/home/brianmurray/.config'
-let g:netrw_dirhist_5='/usr/local/google/home/brianmurray/.config/chrome-remote-desktop'
-let g:netrw_dirhist_6='/usr/local/google/home/brianmurray/.config'
-let g:netrw_dirhist_7='/google/src/cloud/brianmurray/vday_triggers/google3/googledata/html/js/egg/vday17/editor'
-let g:netrw_dirhist_8='/google/data/rw/users/br/brianmurray/dotfiles'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/google/src/cloud/brianmurray/logo17/google3/blaze-genfiles/googledata/html/js/egg/logo17'
