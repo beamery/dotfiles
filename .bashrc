@@ -174,7 +174,7 @@ alias g4-basecl='srcfs get_readonly'
 alias open='gnome-open'
 alias va='find -L . -type f -exec vim {} +'
 alias fix-auth='eval $(ssh-agent -s)'
-#alias tmux='/usr/bin/tmx'
+alias tmux='/usr/bin/tmx'
 
 
 function run_doodle_server() {
