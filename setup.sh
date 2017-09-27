@@ -18,7 +18,7 @@ ln -s $(pwd)/.bashrc ~/.bashrc
 ln -s $(pwd)/.emacs ~/.emacs
 ln -s $(pwd)/.emacs.d ~/.emacs.d
 ln -s $(pwd)/.gvimrc ~/.gvimrc
-ln -s $(pwd)/.hgrc ~/.gvimrc
+ln -s $(pwd)/.hgrc ~/.hgrc
 ln -s $(pwd)/.hgignore ~/.hgignore
 ln -s $(pwd)/.jartps1.sh ~/.jartps1.sh
 ln -s $(pwd)/.tmux.conf ~/.tmux.conf
