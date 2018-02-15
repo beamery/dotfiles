@@ -3,6 +3,9 @@ username = brianmurray
 merge = vimmerge
 ignore = ~/.hgignore
 
+[trainingwheels]
+pushdirty = false
+
 [color]
 changeset.remaining = bold black
 

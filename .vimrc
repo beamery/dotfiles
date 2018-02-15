@@ -178,6 +178,7 @@ autocmd BufWritePre * %s/\s\+$//e
 autocmd! BufEnter * cd .
 
 " set filetype specific indentation
+autocmd BufWritePre * %s/\s\+$//e
 autocmd FileType sh setlocal shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=81
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
