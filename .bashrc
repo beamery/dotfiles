@@ -1,6 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+source /google/src/head/depot/google3/quality/ui/doodles/tools/bashrc
 
 # Prints last stable build of specified project in TAP
 function stable() {
@@ -107,6 +108,7 @@ source /google/data/ro/teams/mobile_eng_prod/crow/crow-complete.bash
 export SCRIPTS_DIR='/google/src/head/depot/google3/experimental/users/brianmurray/scripts'
 export X20_SCRIPTS_DIR='/google/data/ro/users/br/brianmurray/scripts'
 export PATH=${PATH}:${SCRIPTS_DIR}:${X20_SCRIPTS_DIR}:$HOME/.local/bin:$HOME/scripts
+export PATH='/usr/local/google/home/brianmurray/.linuxbrew/bin:/usr/local/google/home/brianmurray/.linuxbrew/sbin':"$PATH"
 # Add ~/opt and ~/bin to our path
 #export PATH=$HOME/opt:$HOME/bin:$PATH
 
@@ -124,18 +126,30 @@ alias emacs-daemon='emacs --daemon'
 alias e='emacsclient -t'
 alias ec='emacsclient -c'
 alias ek="emacsclient -e '(kill-emacs)'"
+alias vim='vim --servername vi_main'
 if hash nvim 2>/dev/null; then
   alias vim='nvim'
 fi
 
 # Google specific
+export EGG=googledata/html/js/egg
+
+function g3() {
+  echo ${PWD%google3*}google3
+}
+
+function cdg() {
+  if [ -n $2 ]; then
+    cd ${PWD%google3*}google3/$1/$2
+  else
+    cd ${PWD%google3*}google3/$1
+  fi
+}
 
 ################################ AGSA ########################################
 alias gsa-dump-state='~/scripts/gsa_dump_state.sh'
-alias gsa-make='blaze run --config=android_arm //java/com/google/android/apps/gsa/velvet:install_velvet_dev'
+alias gsa-make='blaze mobile-install --config=android_arm //java/com/google/android/apps/gsa/binaries/velvet:velvet_dev'
 alias gsa-test='vendor/unbundled_google/packages/GoogleSearch/velvettests'
-alias cdg='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/java/com/google/android/apps/gsa"}'"')"
-alias cdgt='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/javatests/com/google/android/apps/gsa"}'"')"
 
 
 ################################ Sidekick ####################################
@@ -149,33 +163,51 @@ alias gws-run='gws/tools/startgws.py --binary=blaze-bin/gws/gws --alsologtostder
 alias gws-run-debug='gws/tools/startgws.py --port=8887 --binary=blaze-bin/gws/gws --fileset=startgws_fileset --debug --debug_args=--breakpoint=main --addarg=install_watchdog_in_gws_ss=false --addarg=xfe_watchdog_timeout_seconds=480'
 alias gws-run-borg='/google/data/ro/projects/gws/tools/start_gws_on_borg     --keep_running     --cell=pa     --use_custom_googledata      --custom_googledata_tarball_output_path=$PWD/blaze-bin/gws/tools/googledata.tgz     --sffe_rebuild_data_tarball     --borg_ephemeral_packages --charged_user=eval-service-quality'
 alias gws-run-with-gfe='gws/tools/startgws.py --port=8887 --also_launch_gfe --gfe_ssl_port=8886 --binary=blaze-bin/gws/gws --alsologtostderr'
-alias gws-sync-green='/home/build/static/projects/testing/tap/scripts/tap_sync gws,gws.googledata,gws.binary_and_data'
+alias gws-sync-green='cdg; gws/tools/sync_to_green.sh'
 alias gws-instanter='/google/data/ro/projects/gws/tools/start_gws_on_borg --instanter  --always_sync'
+alias fastgws='/google/src/head/depot/google3/gws/tools/fastgws/fastgws'
 
 ################################ Doodles ######################################
+alias cannon-run-local='services/appengine/internal_apps/doodlecannon/app.sh deploy local --port=8080 --dev_appserver_admin_port=8000'
+alias cannon-prod-data='services/appengine/internal_apps/doodlecannon/dataloader.sh --test_server="localhost:8080"'
 alias pineapple-make='blaze run --android_sdk=//third_party/java/android/android_sdk_linux/platforms/prerelease:android_sdk_tools //java/com/google/android/apps/doodles/pineapple:run'
 alias vday-make='blaze run //java/com/google/android/apps/doodles/vday17:run'
-alias cdv='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/googledata/html/js/egg/vday17"}'"')"
-alias cddb='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/third_party/javascript/doodle_blocks"}'"')"
-alias cdf='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/googledata/html/js/egg/fischinger"}'"')"
-alias cdl='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/googledata/html/js/egg/logo17"}'"')"
-alias cdc='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/services/appengine/internal_apps/doodlecannon"}'"')"
+alias cdegg='cdg $EGG'
+alias cdv='cdg $EGG/vday17'
+alias cdf='cdg $EGG/fischinger'
+alias cdl='cdg $EGG/logo17'
+alias cddb='cdg third_party/javascript/doodle_blocks'
+alias cddc='cdg services/appengine/internal_apps/doodlecannon'
+alias cdsd='cdg services/appengine/apps/slashdoodles'
+alias cdex='cdg experimental/users/brianmurray'
 alias cdx='cd /google/data/rw/users/br/brianmurray'
-alias cdex='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/experimental/users/brianmurray"}'"')"
-alias cdwasm='cd $(pwd | awk -F google3 '"'"'{print $1"/google3/experimental/doodles/hackathon/wasm"}'"')"
 
 ################################# Shared #######################################
 alias milldump='/google/data/ro/projects/logs/milldump'
 alias aswb='/opt/android-studio-with-blaze-stable/bin/studio.sh'
 alias killaswb='ps -Af | egrep "aswb|blaze" | awk '\''{print $2}'\'' | xargs kill -9'
-alias cdg='cd $(pwd | awk -F google3 '"'"'{print $1"/google3"}'"')"
 alias g5='git5'
 alias g4-basecl='srcfs get_readonly'
 alias open='gnome-open'
 alias va='find -L . -type f -exec vim {} +'
 alias fix-auth='eval $(ssh-agent -s)'
-alias tmux='/usr/bin/tmx'
+alias tmux='tmx2'
+alias tmux-kill-dupes="tmx2 ls | awk -F ':' ' /^_/ { print \$1 }' | xargs -L 1 tmx2 kill-session -t"
+alias blaze-run='/google/src/files/head/depot/google3/devtools/blaze/scripts/blaze-run.sh'
 
+function stage_sandbox() {
+  cdg
+  time googledata/html/js/egg/stage_doodle_on_borg.sh --sandbox=true --user=searchui --priority=200 --dc=$1 --ogs_dc=$1 --require_login=false --force_uncacheable=true --dir=googledata/html/logos/2017/$2
+}
+
+function stage_versioned_sandbox() {
+  cdg
+  if [ -n $3 ]; then
+    googledata/html/js/egg/stage_versioned_doodle_on_borg.sh --source_dir=$EGG/$2 --dc=$1 --ogs_dc=$1 --version=$3
+  else
+    googledata/html/js/egg/stage_versioned_doodle_on_borg.sh --source_dir=$EGG/$2 --dc=$1 --ogs_dc=$1
+  fi
+}
 
 function run_doodle_server() {
     if [ -n "$TMUX" ]; then
@@ -202,12 +234,37 @@ function update_logo_stable() {
 }
 
 function sidekick_run() {
+  cdg
   PORT=9999
   if [ -n $1 ]; then
     PORT=$1
   fi
-  g5d
   java/com/google/geo/sidekick/scripts/run_frontend --build --blaze --port=$PORT --gaia=prod
+}
+
+function desktop_ntp() {
+  CELL='wk'
+  if [ -n $1 ]; then
+    CELL=$1
+  fi
+  /opt/google/chrome/chrome --enable-instant-extended-api --google-base-url=https://sky-brianmurray-'$CELL'-gws.sandbox.google.com --use-cacheable-new-tab-page
+}
+
+function android_ntp() {
+  CELL='wk'
+  if [ -n $1 ]; then
+    CELL=$1
+  fi
+  /google/data/ro/users/kh/khom/bin/crow_chrome_ntp.sh --google_base_url=http://sky-brianmurray-$CELL-gws.sandbox.google.com/
+}
+
+function run_slashdoodles() {
+  cdg
+  VERSION_TAG='test'
+  if [-n $1 ]; then
+    VERSION_TAG=$1
+  fi
+  services/appengine/apps/slashdoodles/app.sh deploy prod --version_tag=$VERSION_TAG
 }
 
 dircolors /usr/local/google/home/brianmurray/.dir_colors/dircolors
@@ -230,6 +287,7 @@ export PATH=${PATH}:${ANDROID_SDK_HOME}/platform-tools:${ANDROID_SDK_HOME}/tools
 #    ANDROID_ADB=${ANDROID_ADB} $EMU_SUPPORT/adb.turbo "$@"
 #}
 
+#export FZF_DEFAULT_COMMAND='find . -maxdepth 1'
 export FZF_DEFAULT_COMMAND='find .'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -248,53 +306,12 @@ function source_bashrc_if_changed() {
 }
 export PROMPT_COMMAND="source_bashrc_if_changed"
 
-# /PERSONAL SETTINGS
+## Set the Hi status to be displayed as part of the prompt. #!>>HI<<!#
+#PS1="\[\${__hi_prompt_color}\]\${__hi_prompt_text}\[${__hi_NOCOLOR}\]${PS1}" #!>>HI<<!#
+## Set the default values for the text of the hi prompt. Change these if you like. #!>>HI<<!#
+#__hi_on_prompt="[hi on] " #!>>HI<<!#
+#__hi_off_prompt="[hi off]" #!>>HI<<!#
 
-# X20 writable user dir
-#export XHOME=/google/data/rw/users/${USER:0:2}/$USER
 
-# KHOM STUFF
-
-###############
-# Bash history
-#  
-#  # If set, the history list is appended to the file named by the value of the
-#  # HISTFILE variable when the shell exits, rather than overwriting the file.
-#  shopt -s histappend
-#  # If set, bash attempts to save all lines of a multiple-line command in the
-#  # same history entry. This allows easy re-editing of multi-line commands.
-#  shopt -s cmdhist
-#  # If set, bash checks the window size after each command and, if necessary,
-#  # updates the values of LINES and COLUMNS.
-#  shopt -s checkwinsize
-#  # http://wiki.corp.google.com/twiki/bin/view/Main/BashTipsByNik
-#  # A value of erasedups causes all previous lines matching the current line to be
-#  # removed from the history list before that line is saved.
-#  HISTCONTROL=erasedups
-#  # Format string for strftime(3) to print the time stamp associated with each
-#  # history entry displayed by the history builtin.
-#  HISTTIMEFORMAT="%F %T " # %Y-%m-%d %H:%M:%S
-#  #HISTTIMEFORMAT='%F %R ' # %Y-%m-%d %H:%M
-#  # Must be set in /etc/bash.bashrc to avoid truncation upon opening new shells.
-#  # The maximum number of lines contained in the history file.
-#  # Numeric values less than zero inhibit truncation
-#  HISTFILESIZE=-1
-#  # Must be set in /etc/bash.bashrc to avoid truncation upon opening new shells.
-#  # The number of commands to remember in the command history.
-#  # Numeric values less than zero result in every command being saved on the
-#  # history list (there is no limit).
-#  HISTSIZE=-1
-#  # Flush history to file on each command.
-#  # -a Append the "new" history lines (history lines entered since the #
-#  #    beginning of the current bash session) to the history file.
-#  # -n Read the history lines not already read from the history file into the
-#  #    current history list. These are lines appended to the history file since
-#  #    the beginning of the current bash session.
-#  export PROMPT_COMMAND="history -a; history -n; source_bashrc_if_changed;"
-#  #trap 'history -a; history -n;' DEBUG
-#  # Set this last to avoid truncating the file
-#  HISTFILE=$XHOME/.bash_history
-#  ls -l $HISTFILE
-#  set | grep -E '^HIST(FILE)?SIZE'
-#  
-# /KHOM STUFF
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

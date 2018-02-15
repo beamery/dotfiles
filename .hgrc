@@ -30,9 +30,7 @@ cls = log --rev pendingchain --template '{cl}\n'
 citc_client = !p4 g4d $($HG cl)
 
 lint = !export CL=$($HG cl) && cd $($HG citc_client) && g4 lint -c $CL "$@"
-mail = !export CL=$($HG cl) && cd $($HG citc_client) && g4 mail -c $CL "$@"
 presubmit = !export CL=$($HG cl) && cd $($HG citc_client) && g4 presubmit -c $CL "$@"
-submit = !export CL=$($HG cl) && cd $($HG citc_client) && g4 submit -c $CL "$@"
 tap = !export CL=$($HG cl) && cd $($HG citc_client) && tap_presubmit -c $CL "$@"
 
 [extensions]
@@ -44,3 +42,6 @@ cmd.vimdiff =
 [alias]
 vi  = vimdiff
 vim = vimdiff
+
+[trainingwheels]
+pushdirty = false

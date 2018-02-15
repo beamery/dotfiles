@@ -9,5 +9,7 @@ alias @gsa /java/com/google/android/apps/gsa
 alias @gsa_test /javatests/com/google/android/apps/gsa
 alias @sidekick_fe /java/com/google/geo/sidekick/frontend
 alias @sidekick_fe_test /javatests/com/google/geo/sidekick/frontend
+alias @gws /java/com/google/gws/plugins/doodle
+alias @gws_test /javatests/com/google/gws/plugins/doodle
 
 alias @blockly /third_party/javascript/doodle_blocks
