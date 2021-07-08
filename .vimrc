@@ -23,7 +23,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
+
 Plug 'garbas/vim-snipmate'
+let g:snipMate = { 'snippet_version' : 1 }
+
 Plug 'vim-scripts/FuzzyFinder'
 Plug 'leafgarland/typescript-vim'
 Plug 'osyo-manga/vim-over'
