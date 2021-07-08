@@ -1,4 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/google/src/cloud/brianmurray/doodle_notif_gws/google3/javatests/com/google/personalization/settings'
-let g:netrw_dirhist_2='/google/src/cloud/brianmurray/doodle_notif_gws/google3/javatests/com/google/personalization/settings/api'
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/google/src/cloud/brianmurray/multiplayer/google3/quality/ui/doodles/tools/multiplayer/helmfile/projects/cloud-doodles-dev'
+let g:netrw_dirhist_0='/google/src/cloud/brianmurray/boq/google3/java/com/google/gws/common/api/doodle/environment/boq/manifest'
+let g:netrw_dirhist_9='/google/src/cloud/brianmurray/boq/google3/java/com/google/gws/common/api/doodle/environment/boq'
+let g:netrw_dirhist_8='/google/src/cloud/brianmurray/boq/google3/java/com/google/gws/common/api/doodle/environment/boq/manifest'
+let g:netrw_dirhist_7='/google/src/cloud/brianmurray/doodle_blocks/google3/third_party/javascript/doodle_blocks'
+let g:netrw_dirhist_6='/google/src/cloud/brianmurray/boq/google3/quality/ui/doodles/doodleconverter/livedata'
+let g:netrw_dirhist_5='/google/src/cloud/brianmurray/boq_node_move/google3/javatests/com/google/quality/ui/doodles/api/service'
+let g:netrw_dirhist_4='/google/src/cloud/brianmurray/mindgap/google3/googledata/html/js/egg/mindgap/images/metro'
+let g:netrw_dirhist_3='/google/src/cloud/brianmurray/mindgap/google3/googledata/html/js/egg/mindgap/images'
+let g:netrw_dirhist_2='/google/src/cloud/brianmurray/mindgap/google3/googledata/html/js/egg/mindgap'
