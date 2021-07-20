@@ -39,8 +39,6 @@ fi
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -57,13 +55,6 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
 # PERSONAL SETTINGS
 export TERM=xterm-256color
 
@@ -73,21 +64,8 @@ export HISTFILESIZE=100000               # big big history
 shopt -s histappend                      # append to history, don't overwrite it
 
 # Save and reload the history after each command finishes
-#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export PATH=${PATH}:$HOME/.local/bin:$HOME/scripts:/usr/local/bin
-# Add ~/opt and ~/bin to our path
-#export PATH=$HOME/opt:$HOME/bin:$PATH
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 # Personal
 if hash nvim 2>/dev/null; then
@@ -106,9 +84,6 @@ function kubectl_log() {
   eval "{ " $log_cmd "wait; }"
 }
 
-export P4DIFF='vimdiff -f'
-export P4MERGE='vimmerge'
-
 #export FZF_DEFAULT_COMMAND='find . -maxdepth 1'
 export FZF_DEFAULT_COMMAND='find .'
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -125,14 +100,5 @@ function source_bashrc_if_changed() {
         BASHRC_CHANGETIME=$NEW_BASHRC_CHANGETIME
     fi
 }
-export PROMPT_COMMAND="source_bashrc_if_changed"
+export PROMPT_COMMAND="source_bashrc_if_changed; $PROMPT_COMMAND"
 
-## Set the Hi status to be displayed as part of the prompt. #!>>HI<<!#
-#PS1="\[\${__hi_prompt_color}\]\${__hi_prompt_text}\[${__hi_NOCOLOR}\]${PS1}" #!>>HI<<!#
-## Set the default values for the text of the hi prompt. Change these if you like. #!>>HI<<!#
-#__hi_on_prompt="[hi on] " #!>>HI<<!#
-#__hi_off_prompt="[hi off]" #!>>HI<<!#
-
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
