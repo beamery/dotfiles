@@ -9,6 +9,7 @@ mv ~/.gvimrc ~/dotfiles_backup/.gvimrc
 mv ~/.tmux.conf ~/dotfiles_backup/.tmux.conf
 mv ~/.vim ~/dotfiles_backup/.vim
 mv ~/.vimrc ~/dotfiles_backup/.vimrc
+mv ~/.hg ~/dotfiles_backup/.hg
 
 # setup the home directories dotfiles to point here
 ln -s $(pwd)/.bashrc ~/.bashrc
@@ -18,4 +19,5 @@ ln -s $(pwd)/.gvimrc ~/.gvimrc
 ln -s $(pwd)/.tmux.conf ~/.tmux.conf
 ln -s $(pwd)/.vim ~/.vim
 ln -s $(pwd)/.vimrc ~/.vimrc
+ln -s $(pwd)/.hg ~/.hg
 

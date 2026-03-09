@@ -1,0 +1,4 @@
+[alias]
+ll = log -G
+xl = ll -r smart
+x = xl
