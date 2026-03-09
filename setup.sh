@@ -20,4 +20,5 @@ ln -s $(pwd)/.tmux.conf ~/.tmux.conf
 ln -s $(pwd)/.vim ~/.vim
 ln -s $(pwd)/.vimrc ~/.vimrc
 ln -s $(pwd)/.hg ~/.hg
+ln -s $(pwd)/.hg/hgrc ~/.hgrc
 
